@@ -1,0 +1,1795 @@
+substitutions:
+  name: eve
+  friendly_name: Eve
+
+## v1.06 19-jul-2025 #############################################################################################################################
+## Added: Startup sound when connected to HA, optional with switch, and option to select other sounds in settings below.
+## v1.05 18-jul-2025 #############################################################################################################################
+## Fixes: minor bugfixes, sound level to max, show muted mic when playing music or playing TTS, not when playing internal sounds.
+## v1.04 13-jul-2025 #############################################################################################################################
+## Added: optional wake sound, delays the time before listening, so optional switch in HA.
+## Moved: show_text and show_battery_status to switches in HA.
+## v1.03 08-jul-2025 #############################################################################################################################
+## Added: optional show text boxes
+## v1.02 30-jun-2025 #############################################################################################################################
+## Added optional Battery Status
+
+## SETTINGS ######################################################################################################################################
+
+  imagemodel: "kko" # (options are: Alfred,Astrobot,Buzz,Casita,Cybergirl,Dory,EVE,Eyes,GLaDOS,Girl1,Guy1,Guy2,Harley,Jarvis,Luffy,Mario,Max,Prime,Robot,Robotgirl,Shaun)
+  startup_sound: "home" # available, caught, core, hardware, home, run, iron_man_theme
+
+  imagewidth: "240" # GC9A01A (Ball v2 & Muma & Puck) "240"
+  imageheight: "240" # GC9A01A (Ball v2 & Muma & Puck) "240"
+  displaymodel: "GC9A01A" # GC9A01A (Ball v2 & Puck) or ST7789V (Muma)
+  invertcolors: "true" # GC9A01A/ST7789V (Ball v2 & Muma & Puck) "true"
+
+##################################################################################################################################################
+
+  # Hardware v2 pin mappings
+  sda_pin_bus_a: "15"        # I2C Bus A SDA
+  scl_pin_bus_a: "14"        # I2C BUS A SCL
+  sda_pin_bus_b: "11"        # I2C Bus B SDA
+  scl_pin_bus_b: "7"         # I2C BUS B SCL
+
+  i2s_lrclk_pin: "45"        # I2S LRCLK (Word Select)
+  i2s_bclk_pin: "9"          # I2S BCLK (Bit Clock)
+  i2s_mclk_pin: "16"         # I2S MCLK (Master Clock)
+  i2s_din_pin: "10"          # I2S Data In (Mic)
+  i2s_dout_pin: "8"          # I2S Data Out (Speaker)
+
+  speaker_enable_pin: "46"   # Speaker Enable
+  touch_input_pin: "12"      # Touch interrupt
+  touch_reset_pin: "6"       # Touch Reset
+
+  backlight_output_pin: "42" # Display Backlight
+  lcd_cs_pin: "5"            # Display CS (Chip Select)
+  lcd_dc_pin: "47"           # Display DC (Data/Command)
+  lcd_reset_pin: "38"        # Display Reset
+  spi_clk_pin: "4"           # SPI Clock
+  spi_mosi_pin: "2"          # SPI MOSI (Data Out)
+
+  left_top_button_pin: "0"   # Main Button
+  led_pin: "48"              # RGB LED (WS2812)
+  battery_adc_pin: "1"       # Battery Voltage ADC
+
+##################################################################################################################################################
+
+  # loading_illustration_file: https://github.com/RealDeco/xiaozhi-esphome/raw/main/images/${imagemodel}/${imagewidth}x${imageheight}/loading.png
+  # idle_illustration_file: https://github.com/RealDeco/xiaozhi-esphome/raw/main/images/${imagemodel}/${imagewidth}x${imageheight}/idle.png
+  # listening_illustration_file: https://github.com/RealDeco/xiaozhi-esphome/raw/main/images/${imagemodel}/${imagewidth}x${imageheight}/listening.png
+  # thinking_illustration_file: https://github.com/RealDeco/xiaozhi-esphome/raw/main/images/${imagemodel}/${imagewidth}x${imageheight}/thinking.png
+  # replying_illustration_file: https://github.com/RealDeco/xiaozhi-esphome/raw/main/images/${imagemodel}/${imagewidth}x${imageheight}/replying.png
+  # error_illustration_file: https://github.com/RealDeco/xiaozhi-esphome/raw/main/images/${imagemodel}/${imagewidth}x${imageheight}/error.png
+  # timer_finished_illustration_file: https://github.com/RealDeco/xiaozhi-esphome/raw/main/images/${imagemodel}/${imagewidth}x${imageheight}/timer_finished.png
+  # mute_illustration_file: https://github.com/RealDeco/xiaozhi-esphome/raw/main/images/Mute/${imagewidth}x${imageheight}/mute.png
+
+  # startup_sound_file: https://github.com/RealDeco/xiaozhi-esphome/raw/main/sounds/${startup_sound}.flac
+
+  loading_illustration_file: images/${imagemodel}/${imagewidth}x${imageheight}/loading.png
+  idle_illustration_file: images/${imagemodel}/${imagewidth}x${imageheight}/idle.png
+  listening_illustration_file: images/${imagemodel}/${imagewidth}x${imageheight}/listening.png
+  thinking_illustration_file: images/${imagemodel}/${imagewidth}x${imageheight}/thinking.png
+  replying_illustration_file: images/${imagemodel}/${imagewidth}x${imageheight}/replying.png
+  error_illustration_file: images/${imagemodel}/${imagewidth}x${imageheight}/error.png
+  timer_finished_illustration_file: images/${imagemodel}/${imagewidth}x${imageheight}/timer_finished.png
+  mute_illustration_file: images/${imagemodel}/${imagewidth}x${imageheight}/mute.png
+
+  startup_sound_file: sounds/${startup_sound}.flac
+
+  loading_illustration_background_color: "000000"
+  idle_illustration_background_color: "000000"
+  listening_illustration_background_color: "000000"
+  thinking_illustration_background_color: "000000"
+  replying_illustration_background_color: "000000"
+  error_illustration_background_color: "000000"
+
+  voice_assist_idle_phase_id: "1"
+  voice_assist_listening_phase_id: "2"
+  voice_assist_thinking_phase_id: "3"
+  voice_assist_replying_phase_id: "4"
+  voice_assist_not_ready_phase_id: "10"
+  voice_assist_error_phase_id: "11"
+  voice_assist_muted_phase_id: "12"
+  voice_assist_timer_finished_phase_id: "20"
+
+  allowed_characters: " !#%'()+,-./0123456789:;<>?@ABCDEFGHIJKLMNOPQRSTUVWYZ[]_abcdefghijklmnopqrstuvwxyz{|}°²³µ¿ÁÂÄÅÉÖÚßàáâãäåæçèéêëìíîðñòóôõöøùúûüýþāăąćčďĐđēėęěğĮįıļľŁłńňőřśšťũūůűųźŻżŽžơưșțΆΈΌΐΑΒΓΔΕΖΗΘΚΜΝΠΡΣΤΥΦάέήίαβγδεζηθικλμνξοπρςστυφχψωϊόύώАБВГДЕЖЗИКЛМНОПРСТУХЦЧШЪЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёђєіїјљњћאבגדהוזחטיכלםמןנסעפץצקרשת،ءآأإئابةتجحخدذرزسشصضطظعغفقكلمنهوىيٹپچڈکگںھہیےংকচতধনফবযরলশষস়ািু্చయలిెొ్ംഅആഇഈഉഎഓകഗങചജഞടഡണതദധനപഫബഭമയരറലളവശസഹാിീുൂെേൈ്ൺൻർൽൾაბგდევზთილმნოპრსტუფქყშჩცძჭხạảấầẩậắặẹẽếềểệỉịọỏốồổỗộớờởợụủứừửữựỳ—、一上不个中为主乾了些亮人任低佔何作供依侧係個側偵充光入全关冇冷几切到制前動區卧厅厨及口另右吊后吗启吸呀咗哪唔問啟嗎嘅嘛器圍在场執場外多大始安定客室家密寵对將小少左已帘常幫幾库度庫廊廚廳开式後恆感態成我戲戶户房所扇手打执把拔换掉控插摄整斯新明是景暗更最會有未本模機檯櫃欄次正氏水沒没洗活派温測源溫漏潮激濕灯為無煙照熱燈燥物狀玄现現瓦用發的盞目着睡私空窗立笛管節簾籬紅線红罐置聚聲脚腦腳臥色节著行衣解設調請謝警设调走路車车运連遊運過道邊部都量鎖锁門閂閉開關门闭除隱離電震霧面音頂題顏颜風风食餅餵가간감갔강개거게겨결경고공과관그금급기길깥꺼껐꼽나난내네놀누는능니다닫담대더데도동됐되된됨둡드든등디때떤뜨라래러렇렌려로료른를리림링마많명몇모무문물뭐바밝방배변보부불블빨뽑사산상색서설성세센션소쇼수스습시신실싱아안않알았애야어얼업없었에여연열옆오온완외왼요운움워원위으은을음의이인일임입있작잠장재전절정제져조족종주줄중줘지직진짐쪽차창천최추출충치침커컴켜켰쿠크키탁탄태탬터텔통트튼티파팬퍼폰표퓨플핑한함해했행혀현화활후휴힘，？"
+
+  font_glyphsets: "GF_Latin_Core"
+  font_family: Figtree
+
+##################################################################################################################################################
+
+  # --- Eye Geometry & Animation Substitutions ---
+  screen_center_x: "120" # imagewidth / 2
+  screen_center_y: "120" # imageheight / 2
+  
+  eye_radius: "40"
+  
+  pupil_radius_small: "7"
+  pupil_radius_normal: "15"
+  pupil_radius_big: "25"
+
+  pupil_offset_from_center: "35" # How far from the eye's center the pupil is
+  
+  max_eye_movement: "30" # The furthest the eye can look from the center
+
+##################################################################################################################################################
+  
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  min_version: 2025.5.0
+  name_add_mac_suffix: false
+  on_boot:
+    priority: 600
+    then:
+      - script.execute: draw_display
+      - component.update: battery_voltage
+      - component.update: battery_percentage
+      - delay: 30s
+      - if:
+          condition:
+            lambda: return id(init_in_progress);
+          then:
+            - lambda: id(init_in_progress) = false;
+            - script.execute: draw_display
+      - script.execute: random_blinker
+esp32:
+  board: esp32-s3-devkitc-1
+  flash_size: 16MB
+  cpu_frequency: 240MHz
+  framework:
+    type: esp-idf
+    sdkconfig_options:
+      CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240: "y"
+      CONFIG_ESP32S3_DATA_CACHE_64KB: "y"
+      CONFIG_ESP32S3_DATA_CACHE_LINE_64B: "y"
+
+psram:
+  mode: octal
+  speed: 80MHz
+
+api:
+  on_client_connected:
+    - script.execute: draw_display
+    - if:
+        condition:
+          switch.is_on: startup_sound_switch
+        then:
+          - script.execute:
+              id: play_sound
+              priority: true
+              sound_file: !lambda return id(ready_sound);
+          - delay: 300ms
+  on_client_disconnected:
+    - script.execute: draw_display
+
+ota:
+  - platform: esphome
+    id: ota_esphome
+
+logger:
+  hardware_uart: USB_SERIAL_JTAG
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "Ball v2 Hotspot"
+    password: !secret password
+  on_connect:
+    - script.execute: draw_display
+  on_disconnect:
+    - script.execute: draw_display
+  use_address: 192.168.50.122
+
+captive_portal:
+
+button:
+  - platform: factory_reset
+    id: factory_reset_btn
+    internal: true
+
+### EYES
+  - platform: template
+    name: "Smooth Blink"
+    on_press:
+      - script.execute: smooth_blink
+  - platform: template
+    name: "Fast Blink"
+    on_press:
+      - script.execute: fast_blink
+  - platform: template
+    name: "Look Right"
+    on_press:
+      - lambda: |-
+          id(eye_offset_x) = 25;
+          id(last_interaction) = millis();
+      - script.execute: update_eye_target
+  - platform: template
+    name: "Look Left"
+    on_press:
+      - lambda: |-
+          id(eye_offset_x) = -25;
+          id(last_interaction) = millis();
+      - script.execute: update_eye_target
+  - platform: template
+    name: "Look Up"
+    on_press:
+      - lambda: |-
+          id(eye_offset_y) = -25;
+          id(last_interaction) = millis();
+      - script.execute: update_eye_target    
+  - platform: template
+    name: "Look Down"
+    on_press:
+      - lambda: |-
+          id(eye_offset_y) = 25;
+          id(last_interaction) = millis();
+      - script.execute: update_eye_target    
+  - platform: template
+    name: "Look Ahead"
+    on_press:
+      - lambda: |-
+          id(eye_offset_x) = 0;
+          id(eye_offset_y) = 0;
+          id(last_interaction) = millis();
+      - script.execute: update_eye_target
+
+
+sensor:
+  - platform: adc
+    pin: GPIO${battery_adc_pin}
+    name: "Battery Voltage"
+    id: battery_voltage
+    attenuation: 12db
+    accuracy_decimals: 2
+    update_interval: 1s
+    unit_of_measurement: "V"
+    icon: mdi:battery-medium
+    filters:
+      - multiply: 2.0
+      - median:
+          window_size: 7
+          send_every: 7
+          send_first_at: 7
+      - throttle: 1min
+    on_value:
+      then:
+        - component.update: battery_percentage
+      
+  - platform: template
+    id: battery_percentage
+    name: "Battery Percentage"
+    lambda: return id(battery_voltage).state;
+    accuracy_decimals: 0
+    unit_of_measurement: "%"
+    icon: mdi:battery-medium
+    filters:
+      - calibrate_linear:
+         method: exact
+         datapoints:
+          - 2.80 -> 0.0
+          - 3.10 -> 10.0
+          - 3.30 -> 20.0
+          - 3.45 -> 30.0
+          - 3.60 -> 40.0
+          - 3.70 -> 50.0
+          - 3.75 -> 60.0
+          - 3.80 -> 70.0
+          - 3.90 -> 80.0
+          - 4.00 -> 90.0
+          - 4.20 -> 100.0
+      - lambda: |-
+          if (x > 100) return 100;
+          if (x < 0) return 0;
+          return x;
+    on_value:
+      then:
+        - lambda: |-
+            int current = (int)x;
+            if (current != id(last_battery_percent)) {
+              id(last_battery_percent) = current;
+              id(draw_display).execute();
+            }
+
+touchscreen:
+  - platform: cst816
+    i2c_id: bus_b
+    interrupt_pin: ${touch_input_pin}
+    reset_pin: ${touch_reset_pin}
+    id: touch_dp
+    on_touch:
+      then:
+        - binary_sensor.template.publish:
+            id: touch_input
+            state: ON
+    on_release:
+      then:
+        - binary_sensor.template.publish:
+            id: touch_input
+            state: OFF
+
+binary_sensor:
+  - platform: template
+    name: "Touch Button"
+    id: touch_input
+    on_multi_click:
+      # Single tap
+      - timing:
+          - ON for 40ms to 400ms
+          - OFF for at least 330ms
+        then:
+          - if:
+              condition:
+                switch.is_on: timer_ringing
+              then:
+                - switch.turn_off: timer_ringing
+              else:
+                - if:
+                    condition:
+                      lambda: return id(wake_word_engine_location).state == "On device";
+                    then:
+                      - if:
+                          condition:
+                            not:
+                              voice_assistant.is_running:
+                          then:
+                            - voice_assistant.start:
+                          else:
+                            - voice_assistant.stop:  
+
+      - timing:
+          - ON for at least 1s
+        then:
+          - switch.toggle: show_battery_status
+          - script.execute: draw_display
+
+  - platform: gpio
+    pin:
+      number: GPIO${left_top_button_pin}
+      mode: INPUT_PULLUP
+      ignore_strapping_warning: true
+      inverted: true
+    id: left_top_button
+    internal: true
+    on_multi_click:
+      - timing:
+          - ON for at least 50ms
+          - OFF for at least 50ms
+        then:
+          - if:
+              condition:
+                switch.is_on: timer_ringing
+              then:
+                - switch.turn_off: timer_ringing
+              else:
+                - if:
+                    condition:
+                      lambda: return id(wake_word_engine_location).state == "On device";
+                    then:
+                      - if:
+                          condition:
+                            not:
+                              voice_assistant.is_running:
+                          then:
+                            - voice_assistant.start:                     
+                          else:
+                            - voice_assistant.stop:  
+      - timing:
+          - ON for at least 10s
+        then:
+          - button.press: factory_reset_btn
+
+output:
+  - platform: ledc
+    pin: GPIO${backlight_output_pin}
+    id: backlight_output
+    inverted: true 
+
+light:
+  - platform: monochromatic
+    id: Sled
+    name: Screen
+    icon: "mdi:television"
+    entity_category: config
+    output: backlight_output
+    restore_mode: ALWAYS_ON
+    default_transition_length: 250ms
+  - platform: esp32_rmt_led_strip
+    id: led
+    name: none
+    disabled_by_default: false
+    entity_category: config
+    pin: GPIO${led_pin}
+    default_transition_length: 0s
+    chipset: WS2812
+    num_leds: 1
+    rgb_order: grb
+    effects:
+      - pulse:
+          name: "Slow Pulse"
+          transition_length: 250ms
+          update_interval: 250ms
+          min_brightness: 50%
+          max_brightness: 100%
+      - pulse:
+          name: "Fast Pulse"
+          transition_length: 100ms
+          update_interval: 100ms
+          min_brightness: 50%
+          max_brightness: 100%
+
+i2c:
+  - id: bus_a
+    sda: GPIO${sda_pin_bus_a}
+    scl: GPIO${scl_pin_bus_a}
+    scan: true
+  - id: bus_b
+    sda: GPIO${sda_pin_bus_b}
+    scl: GPIO${scl_pin_bus_b}
+    scan: true
+
+i2s_audio:
+  - id: i2s_audio_bus
+    i2s_lrclk_pin: GPIO${i2s_lrclk_pin}
+    i2s_bclk_pin: GPIO${i2s_bclk_pin}
+    i2s_mclk_pin: GPIO${i2s_mclk_pin}
+
+audio_dac:
+  - platform: es8311
+    i2c_id: bus_a 
+    id: es8311_dac
+    bits_per_sample: 16bit
+    sample_rate: 16000
+
+microphone:
+  - platform: i2s_audio
+    id: i2s_mics
+    sample_rate: 16000
+    i2s_din_pin: GPIO${i2s_din_pin}
+    bits_per_sample: 16bit
+    adc_type: external
+    channel: left
+
+speaker:
+  - platform: i2s_audio
+    id: i2s_audio_speaker
+    i2s_dout_pin: GPIO${i2s_dout_pin}
+    dac_type: external
+    sample_rate: 16000
+    bits_per_sample: 16bit
+    channel: left
+    audio_dac: es8311_dac
+    buffer_duration: 100ms
+
+media_player:
+  - platform: speaker
+    name: None
+    id: external_media_player
+    volume_min: 0.5
+    volume_max: 0.8    
+    announcement_pipeline:
+      speaker: i2s_audio_speaker
+      format: FLAC
+      sample_rate: 16000
+      num_channels: 1  # S3 Box only has one output channel
+    files:
+      - id: timer_finished_sound
+        file: https://github.com/esphome/home-assistant-voice-pe/raw/dev/sounds/timer_finished.flac
+      - id: wake_word_triggered_sound
+        file: https://github.com/esphome/home-assistant-voice-pe/raw/dev/sounds/wake_word_triggered.flac
+      - id: ready_sound
+        file: ${startup_sound_file}
+    on_announcement:
+      - if:
+          condition:
+            - microphone.is_capturing:
+          then:
+            - script.execute: stop_wake_word
+            - if:
+                condition:
+                  - lambda: return id(wake_word_engine_location).state == "In Home Assistant";
+                then:
+                  - wait_until:
+                      - not:
+                          voice_assistant.is_running:
+      - if:
+          condition:
+            not:
+              voice_assistant.is_running:
+          then:
+            - if:
+                condition:
+                  lambda: 'return id(playing_internal_sound);'
+                then:
+                  - lambda: 'id(playing_internal_sound) = false;'
+                else:
+                  - lambda: id(voice_assistant_phase) = ${voice_assist_muted_phase_id};
+                  - script.execute: draw_display
+    on_idle:
+      - if:
+          condition:
+            not:
+              voice_assistant.is_running:
+          then:
+            - script.execute: start_wake_word
+            - script.execute: set_idle_or_mute_phase
+            - script.execute: draw_display
+
+micro_wake_word:
+  id: mww
+  models:
+    - hey_jarvis
+    - alexa
+    - okay_nabu
+  on_wake_word_detected:
+    - if:
+        condition:
+          switch.is_on: wake_sound
+        then:
+          - script.execute:
+              id: play_sound
+              priority: true
+              sound_file: !lambda return id(wake_word_triggered_sound);
+          - delay: 300ms
+    - voice_assistant.start:
+        wake_word: !lambda return wake_word;
+
+voice_assistant:
+  id: va
+  # task_priority: 2 # does not exist
+  # low_latency_mode: true # does not exist
+  microphone: i2s_mics
+  media_player: external_media_player
+  micro_wake_word: mww
+  noise_suppression_level: 2
+  auto_gain: 31dBFS
+  volume_multiplier: 2.0
+  on_listening:
+    - script.execute: reset_eye_position # <-- ADD THIS
+    - lambda: id(voice_assistant_phase) = ${voice_assist_listening_phase_id};
+    - text_sensor.template.publish:
+        id: text_request
+        state: "..."
+    - text_sensor.template.publish:
+        id: text_response
+        state: "..."
+    - script.execute: draw_display
+  on_stt_vad_end:
+    - lambda: id(voice_assistant_phase) = ${voice_assist_thinking_phase_id};
+    - script.execute: draw_display
+  on_stt_end:
+    - text_sensor.template.publish:
+        id: text_request
+        state: !lambda return x;
+    - script.execute: draw_display
+  on_tts_start:
+    - script.execute: reset_eye_position
+    - text_sensor.template.publish:
+        id: text_response
+        state: !lambda return x;
+    - lambda: id(voice_assistant_phase) = ${voice_assist_replying_phase_id};
+    - script.execute: draw_display
+  on_end:
+    - script.execute: reset_eye_position
+    - wait_until:
+        condition:
+          - media_player.is_announcing:
+        timeout: 0.5s
+    - wait_until:
+        - and:
+            - not:
+                media_player.is_announcing:
+            - not:
+                speaker.is_playing:
+    - if:
+        condition:
+          - lambda: return id(wake_word_engine_location).state == "On device";
+        then:
+          - lambda: id(va).set_use_wake_word(false);
+          - micro_wake_word.start:
+    - script.execute: set_idle_or_mute_phase
+    - script.execute: draw_display
+    - text_sensor.template.publish:
+        id: text_request
+        state: ""
+    - text_sensor.template.publish:
+        id: text_response
+        state: ""
+  on_error:
+    - script.execute: reset_eye_position # <-- ADD THIS
+    - if:
+        condition:
+          lambda: return !id(init_in_progress);
+        then:
+          - lambda: id(voice_assistant_phase) = ${voice_assist_error_phase_id};
+          - script.execute: draw_display
+          - delay: 1s
+          - if:
+              condition:
+                switch.is_off: mute
+              then:
+                - lambda: id(voice_assistant_phase) = ${voice_assist_idle_phase_id};
+              else:
+                - lambda: id(voice_assistant_phase) = ${voice_assist_muted_phase_id};
+          - script.execute: draw_display
+  on_client_connected:
+    - lambda: id(init_in_progress) = false;
+    - script.execute: start_wake_word
+    - script.execute: set_idle_or_mute_phase
+    - script.execute: draw_display
+  on_client_disconnected:
+    - script.execute: stop_wake_word
+    - lambda: id(voice_assistant_phase) = ${voice_assist_not_ready_phase_id};
+    - script.execute: draw_display
+  on_timer_started:
+    - script.execute: draw_display
+  on_timer_cancelled:
+    - script.execute: draw_display
+  on_timer_updated:
+    - script.execute: draw_display
+  on_timer_tick:
+    - script.execute: draw_display
+  on_timer_finished:
+    - switch.turn_on: timer_ringing
+    - wait_until:
+        media_player.is_announcing:
+    - lambda: id(voice_assistant_phase) = ${voice_assist_timer_finished_phase_id};
+    - script.execute: draw_display
+
+script:
+  - id: draw_display
+    then:
+      - if:
+          condition:
+            lambda: return !id(init_in_progress);
+          then:
+            - if:
+                condition:
+                  wifi.connected:
+                then:
+                  - if:
+                      condition:
+                        api.connected:
+                      then:
+                        - lambda: |
+                            switch(id(voice_assistant_phase)) {
+                              case ${voice_assist_listening_phase_id}:
+                                id(s3_box_lcd).show_page(listening_page);
+                                id(s3_box_lcd).update();
+                                break;
+                              case ${voice_assist_thinking_phase_id}:
+                                id(animation_start_thinking).execute(); 
+                                id(s3_box_lcd).show_page(thinking_page);
+                                id(s3_box_lcd).update();
+                                break;
+                              case ${voice_assist_replying_phase_id}:
+                                id(s3_box_lcd).show_page(replying_page);
+                                id(s3_box_lcd).update();
+                                break;
+                              case ${voice_assist_error_phase_id}:
+                                id(s3_box_lcd).show_page(error_page);
+                                id(s3_box_lcd).update();
+                                break;
+                              case ${voice_assist_muted_phase_id}:
+                                id(s3_box_lcd).show_page(muted_page);
+                                id(s3_box_lcd).update();
+                                break;
+                              case ${voice_assist_not_ready_phase_id}:
+                                id(s3_box_lcd).show_page(no_ha_page);
+                                id(s3_box_lcd).update();
+                                break;
+                              case ${voice_assist_timer_finished_phase_id}:
+                                id(s3_box_lcd).show_page(timer_finished_page);
+                                id(s3_box_lcd).update();
+                                break;
+                              default:
+                                // When returning to idle, update the interaction timer first.
+                                id(last_interaction) = millis();
+                                // Then, show the idle page.
+                                id(s3_box_lcd).show_page(idle_page);
+                                id(s3_box_lcd).update();
+                            }
+                      else:
+                        - display.page.show: no_ha_page
+                        - component.update: s3_box_lcd
+                else:
+                  - display.page.show: no_wifi_page
+                  - component.update: s3_box_lcd
+          else:
+            - display.page.show: initializing_page
+            - component.update: s3_box_lcd
+
+  - id: fetch_first_active_timer
+    then:
+      - lambda: |
+          const auto timers = id(va).get_timers();
+          auto output_timer = timers.begin()->second;
+          for (auto &iterable_timer : timers) {
+            if (iterable_timer.second.is_active && iterable_timer.second.seconds_left <= output_timer.seconds_left) {
+              output_timer = iterable_timer.second;
+            }
+          }
+          id(global_first_active_timer) = output_timer;
+  - id: check_if_timers_active
+    then:
+      - lambda: |
+          const auto timers = id(va).get_timers();
+          bool output = false;
+          if (timers.size() > 0) {
+            for (auto &iterable_timer : timers) {
+              if(iterable_timer.second.is_active) {
+                output = true;
+              }
+            }
+          }
+          id(global_is_timer_active) = output;
+  - id: fetch_first_timer
+    then:
+      - lambda: |
+          const auto timers = id(va).get_timers();
+          auto output_timer = timers.begin()->second;
+          for (auto &iterable_timer : timers) {
+            if (iterable_timer.second.seconds_left <= output_timer.seconds_left) {
+              output_timer = iterable_timer.second;
+            }
+          }
+          id(global_first_timer) = output_timer;
+  - id: check_if_timers
+    then:
+      - lambda: |
+          const auto timers = id(va).get_timers();
+          bool output = false;
+          if (timers.size() > 0) {
+            output = true;
+          }
+          id(global_is_timer) = output;
+
+  - id: draw_timer_timeline
+    then:
+      - lambda: |
+          id(check_if_timers_active).execute();
+          id(check_if_timers).execute();
+          if (id(global_is_timer_active)){
+            id(fetch_first_active_timer).execute();
+            int active_pixels = round( 320 * id(global_first_active_timer).seconds_left / max(id(global_first_active_timer).total_seconds , static_cast<uint32_t>(1)) );
+            if (active_pixels > 0){
+              id(s3_box_lcd).filled_rectangle(0 , 225 , 240 , 15 , Color::WHITE );
+              id(s3_box_lcd).filled_rectangle(0 , 226 , active_pixels , 13 , id(active_timer_color) );
+            }
+          } else if (id(global_is_timer)){
+            id(fetch_first_timer).execute();
+            int active_pixels = round( 320 * id(global_first_timer).seconds_left / max(id(global_first_timer).total_seconds , static_cast<uint32_t>(1)));
+            if (active_pixels > 0){
+              id(s3_box_lcd).filled_rectangle(0 , 225 , 240 , 15 , Color::WHITE );
+              id(s3_box_lcd).filled_rectangle(0 , 226 , active_pixels , 13 , id(paused_timer_color) );
+            }
+          }
+  - id: draw_active_timer_widget
+    then:
+      - lambda: |
+          id(check_if_timers_active).execute();
+          if (id(global_is_timer_active)){
+            id(s3_box_lcd).filled_rectangle(80 , 40 , 160 , 50 , Color::WHITE );
+            id(s3_box_lcd).rectangle(80 , 40 , 160 , 50 , Color::BLACK );
+
+            id(fetch_first_active_timer).execute();
+            int hours_left = floor(id(global_first_active_timer).seconds_left / 3600);
+            int minutes_left = floor((id(global_first_active_timer).seconds_left - hours_left * 3600) / 60);
+            int seconds_left = id(global_first_active_timer).seconds_left - hours_left * 3600 - minutes_left * 60 ;
+            auto display_hours = (hours_left < 10 ? "0" : "") + std::to_string(hours_left);
+            auto display_minute = (minutes_left < 10 ? "0" : "") + std::to_string(minutes_left);
+            auto display_seconds = (seconds_left  < 10 ? "0" : "") + std::to_string(seconds_left) ;
+
+            std::string display_string = "";
+            if (hours_left > 0) {
+              display_string = display_hours + ":" + display_minute;
+            } else {
+              display_string = display_minute + ":" + display_seconds;
+            }
+            id(s3_box_lcd).printf(120, 47, id(font_timer), Color::BLACK, "%s", display_string.c_str());
+          }
+  - id: start_wake_word
+    then:
+      - if:
+          condition:
+            and:
+              - not:
+                  - voice_assistant.is_running:
+              - lambda: return id(wake_word_engine_location).state == "On device";
+          then:
+            - lambda: id(va).set_use_wake_word(false);
+            - micro_wake_word.start:
+      - if:
+          condition:
+            and:
+              - not:
+                  - voice_assistant.is_running:
+              - lambda: return id(wake_word_engine_location).state == "In Home Assistant";
+          then:
+            - lambda: id(va).set_use_wake_word(true);
+            - voice_assistant.start_continuous:
+  - id: stop_wake_word
+    then:
+      - if:
+          condition:
+            lambda: return id(wake_word_engine_location).state == "In Home Assistant";
+          then:
+            - lambda: id(va).set_use_wake_word(false);
+            - voice_assistant.stop:
+      - if:
+          condition:
+            lambda: return id(wake_word_engine_location).state == "On device";
+          then:
+            - micro_wake_word.stop:
+  - id: set_idle_or_mute_phase
+    then:
+      - if:
+          condition:
+            switch.is_off: mute
+          then:
+            - lambda: id(voice_assistant_phase) = ${voice_assist_idle_phase_id};
+          else:
+            - lambda: id(voice_assistant_phase) = ${voice_assist_muted_phase_id};
+
+  # Script executed when we want to play sounds on the device.
+  - id: play_sound
+    parameters:
+      priority: bool
+      sound_file: "audio::AudioFile*"
+    then:
+      - lambda: |-
+          id(playing_internal_sound) = true;
+          if (priority) {
+            id(external_media_player)
+              ->make_call()
+              .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_STOP)
+              .set_announcement(true)
+              .perform();
+          }
+          if ( (id(external_media_player).state != media_player::MediaPlayerState::MEDIA_PLAYER_STATE_ANNOUNCING ) || priority) {
+            id(external_media_player)
+              ->play_file(sound_file, true, false);
+          }
+
+### EYES
+  - id: smooth_blink
+    mode: restart
+    then:
+      - lambda: |-
+          id(blink_left) = 0.6;
+          id(blink_right) = 0.6;
+      - delay: 50ms
+      - lambda: |-
+          id(blink_left) = 0.3;
+          id(blink_right) = 0.3;
+      - delay: 50ms
+      - lambda: |-
+          id(blink_left) = 0.0;
+          id(blink_right) = 0.0;
+      - delay: 50ms
+      - lambda: |-
+          id(blink_left) = 0.3;
+          id(blink_right) = 0.3;
+      - delay: 50ms
+      - lambda: |-
+          id(blink_left) = 0.6;
+          id(blink_right) = 0.6;
+      - delay: 50ms
+      - lambda: |-
+          id(blink_left) = 1.0;
+          id(blink_right) = 1.0;
+  - id: fast_blink
+    mode: restart
+    then:
+      - lambda: |-
+          id(blink_left) = 0.0;
+          id(blink_right) = 0.0;
+      - delay: 200ms
+      - lambda: |-
+          id(blink_left) = 1.0;
+          id(blink_right) = 1.0;
+
+  - id: random_blinker
+    mode: restart
+    then:
+      - lambda: 'ESP_LOGI("blink", "Random blink loop started.");'
+      - if:
+          condition:
+            switch.is_off: manual_eyelid_switch
+          then:  
+            - delay: !lambda 'return random_uint32() % 5000 + 5000;' # Delay between 5-10 seconds
+            - script.execute: fast_blink
+            - script.execute: random_blinker # Relaunch the script for the next blink
+
+  - id: update_eye_target
+    mode: restart
+    then:
+      - lambda: |-
+          id(eyeTarget) = { ${screen_center_x} + id(eye_offset_x), ${screen_center_y} + id(eye_offset_y) };
+
+  - id: reset_eye_position
+    then:
+      - lambda: |-
+          // Stop any active animation immediately
+          id(idle_motion_active) = false;
+
+          // Reset eye offsets to center the view
+          id(eye_offset_x) = 0;
+          id(eye_offset_y) = 0;
+          
+          // Update the interaction timer to prevent a new idle animation from starting right away
+          id(last_interaction) = millis();
+      - script.execute: update_eye_target
+
+  - id: draw_eyes_and_ui
+    parameters:
+      background_color: esphome::Color
+      eye_radius: int      
+      pupil_radius: int
+      pupil_color: esphome::Color
+    then:
+      - lambda: |-
+          // --- Core Drawing Logic ---
+          static int left_pupil_x = ${screen_center_x} - ${pupil_offset_from_center};
+          static int left_pupil_y = id(s3_box_lcd).get_height() / 2;
+          static int right_pupil_x = ${screen_center_x} + ${pupil_offset_from_center};
+          static int right_pupil_y = id(s3_box_lcd).get_height() / 2;
+
+          auto eye_target = id(eyeTarget);
+
+          // Smoothly move pupils towards the target
+          auto move_pupil = [&](int &px, int &py, int target_x, int target_y) {
+            int dx = target_x - px;
+            int dy = target_y - py;
+            // A divisor of 4 or 5 provides a nice, smooth interpolation
+            if (abs(dx) > 1) px += dx / 4; // Slower, smoother movement
+            if (abs(dy) > 1) py += dy / 4;
+          };
+
+          move_pupil(left_pupil_x, left_pupil_y, eye_target.first - ${pupil_offset_from_center}, eye_target.second);
+          move_pupil(right_pupil_x, right_pupil_y, eye_target.first + ${pupil_offset_from_center}, eye_target.second);
+
+          auto draw_eye = [&](int cx, int cy, int px, int py, float blink, int e_radius, int p_radius, Color p_color) {
+
+            // If the eye is fully closed, just draw a black circle and nothing else.
+            if (blink <= 0.0f) {
+              id(s3_box_lcd).filled_circle(cx, cy, e_radius, Color::BLACK);
+              return; // Exit the function early
+            }
+
+            // Otherwise, draw the open eye first...
+            id(s3_box_lcd).filled_circle(cx, cy, e_radius, Color::WHITE);
+            id(s3_box_lcd).filled_circle(px, py, p_radius, p_color);
+
+            // ...and then draw the eyelids if it's a partial blink.
+            if (blink < 1.0f) {
+              int blink_px = (int)(e_radius * (1.0f - blink));
+              if (blink_px > 0) {
+                // These rectangles now draw over the white circle to create the eyelid effect.
+                // Top Eyelid (Draws from top edge, downwards)
+                id(s3_box_lcd).filled_rectangle(cx - e_radius, cy - e_radius, e_radius * 2, blink_px + 3, Color::BLACK);
+                // Bottom Eyelid (Draws from bottom edge, upwards)
+                id(s3_box_lcd).filled_rectangle(cx - e_radius, cy + e_radius - blink_px - 2, e_radius * 2, blink_px + 3, Color::BLACK);
+              }
+            }
+          };
+
+          id(s3_box_lcd).fill(background_color);
+
+          // 5px added for esthetics
+          draw_eye(${screen_center_x} - ${pupil_offset_from_center} - 5, id(s3_box_lcd).get_height() / 2, left_pupil_x, left_pupil_y, id(blink_left), eye_radius, pupil_radius, pupil_color);
+          draw_eye(${screen_center_x} + ${pupil_offset_from_center} + 5, id(s3_box_lcd).get_height() / 2, right_pupil_x, right_pupil_y, id(blink_right), eye_radius, pupil_radius, pupil_color);
+
+  - id: animation_start_thinking
+    then:
+      - lambda: |-
+          // Activate the animation engine and tell it to use pattern 6
+          id(idle_motion_active) = true;
+          id(last_idle_motion) = millis(); // Update timer to prevent idle animations from conflicting
+          id(animation_step_time) = millis();
+          id(idle_motion_step) = 0;
+          id(idle_motion_pattern) = 6; // Use pattern 6
+
+          // Set the "thinking" eye position
+          id(eye_offset_x) = -20;
+          id(eye_offset_y) = -20;
+
+
+
+
+switch:
+  - platform: template
+    name: Mute
+    id: mute
+    icon: "mdi:microphone-off"
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+    entity_category: config
+    on_turn_off:
+      - microphone.unmute:
+      - lambda: id(voice_assistant_phase) = ${voice_assist_idle_phase_id};
+      - script.execute: draw_display
+    on_turn_on:
+      - microphone.mute:
+      - lambda: id(voice_assistant_phase) = ${voice_assist_muted_phase_id};
+      - script.execute: draw_display
+  - platform: template
+    id: timer_ringing
+    optimistic: true
+    internal: true
+    restore_mode: ALWAYS_OFF
+    on_turn_off:
+      - lambda: |-
+              id(external_media_player)
+                ->make_call()
+                .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_REPEAT_OFF)
+                .set_announcement(true)
+                .perform();
+              id(external_media_player)->set_playlist_delay_ms(speaker::AudioPipelineType::ANNOUNCEMENT, 0);
+      - media_player.stop:
+          announcement: true
+    on_turn_on:
+      - lambda: |-
+            id(external_media_player)
+              ->make_call()
+              .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_REPEAT_ONE)
+              .set_announcement(true)
+              .perform();
+            id(external_media_player)->set_playlist_delay_ms(speaker::AudioPipelineType::ANNOUNCEMENT, 1000);
+      - media_player.speaker.play_on_device_media_file:
+          media_file: timer_finished_sound
+          announcement: true
+      - delay: 15min
+      - switch.turn_off: timer_ringing
+
+  - platform: gpio
+    name: Speaker Enable
+    icon: "mdi:speaker"
+    entity_category: config
+    pin: GPIO${speaker_enable_pin}
+    restore_mode: RESTORE_DEFAULT_ON
+
+  - platform: template
+    id: wake_sound
+    name: Wake sound
+    icon: "mdi:bullhorn"
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+
+  - platform: template
+    id: startup_sound_switch
+    name: Startup sound
+    icon: "mdi:card-text-outline"
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+
+  - platform: template
+    id: show_text
+    name: Show Text
+    icon: "mdi:card-text-outline"
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+
+  - platform: template
+    id: show_battery_status
+    name: Show Battery Status
+    icon: "mdi:card-text-outline"
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+    on_turn_on:
+      - script.execute: draw_display
+    on_turn_off:
+      - script.execute: draw_display
+
+### EYES
+  - platform: template
+    name: "Left Eye"
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on:
+      - lambda: |-
+          id(blink_left) = 0.6;
+      - delay: 20ms
+      - lambda: |-
+          id(blink_left) = 0.3;
+      - delay: 20ms
+      - lambda: |-
+          id(blink_left) = 0.0;
+    on_turn_off:
+      - lambda: |-
+          id(blink_left) = 0.3;
+      - delay: 20ms
+      - lambda: |-
+          id(blink_left) = 0.6;
+      - delay: 20ms
+      - lambda: |-
+          id(blink_left) = 1.0;
+
+  - platform: template
+    name: "Right Eye"
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on:
+      - lambda: |-
+          id(blink_right) = 0.6;
+      - delay: 20ms
+      - lambda: |-
+          id(blink_right) = 0.3;
+      - delay: 20ms
+      - lambda: |-
+          id(blink_right) = 0.0;
+    on_turn_off:
+      - lambda: |-
+          id(blink_right) = 0.3;
+      - delay: 20ms
+      - lambda: |-
+          id(blink_right) = 0.6;
+      - delay: 20ms
+      - lambda: |-
+          id(blink_right) = 1.0;
+
+  - platform: template
+    id: manual_eyelid_switch
+    name: "Manual Eyelid Control"
+    icon: "mdi:hand-front-right"
+    # entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on:
+      - script.stop: random_blinker # Stop any automatic blinking immediately
+    on_turn_off:
+      # When turning off manual mode, reset eyes to fully open
+      - lambda: |-
+          id(blink_left) = 1.0;
+          id(blink_right) = 1.0;
+      # And re-enable the random blinker script
+      - script.execute: random_blinker
+
+
+number:
+  - platform: template
+    id: eyelids_position
+    name: "Eyelids Position"
+    icon: "mdi:eye-settings-outline"
+    # entity_category: config
+    optimistic: true
+    restore_value: true
+    initial_value: 1.0 # Start with eyes fully open
+    min_value: 0.0
+    max_value: 1.0
+    step: 0.1
+    on_value:
+      then:
+        - if:
+            condition:
+              # Only apply the value if manual mode is on
+              switch.is_on: manual_eyelid_switch
+            then:
+              - lambda: |-
+                  // Update both eyes to the new slider position
+                  id(blink_left) = x;
+                  id(blink_right) = x;
+  - platform: template
+    id: left_eyelid_position
+    name: "Left Eyelid"
+    icon: "mdi:eye-settings-outline"
+    # entity_category: config
+    optimistic: true
+    restore_value: true
+    initial_value: 1.0 # Start with eyes fully open
+    min_value: 0.0
+    max_value: 1.0
+    step: 0.1
+    on_value:
+      then:
+        - if:
+            condition:
+              # Only apply the value if manual mode is on
+              switch.is_on: manual_eyelid_switch
+            then:
+              - lambda: |-
+                  // Update eye to the new slider position
+                  id(blink_left) = x;
+  - platform: template
+    id: right_eyelid_position
+    name: "Right Eyelid"
+    icon: "mdi:eye-settings-outline"
+    # entity_category: config
+    optimistic: true
+    restore_value: true
+    initial_value: 1.0 # Start with eyes fully open
+    min_value: 0.0
+    max_value: 1.0
+    step: 0.1
+    on_value:
+      then:
+        - if:
+            condition:
+              # Only apply the value if manual mode is on
+              switch.is_on: manual_eyelid_switch
+            then:
+              - lambda: |-
+                  // Update eye to the new slider position
+                  id(blink_right) = x;
+
+select:
+  - platform: template
+    entity_category: config
+    name: Wake word engine location
+    id: wake_word_engine_location
+    icon: "mdi:account-voice"
+    optimistic: true
+    restore_value: true
+    options:
+      - In Home Assistant
+      - On device
+    initial_option: On device
+    on_value:
+      - if:
+          condition:
+            lambda: return !id(init_in_progress);
+          then:
+            - wait_until:
+                lambda: return id(voice_assistant_phase) == ${voice_assist_muted_phase_id} || id(voice_assistant_phase) == ${voice_assist_idle_phase_id};
+            - if:
+                condition:
+                  lambda: return x == "In Home Assistant";
+                then:
+                  - micro_wake_word.stop
+                  - delay: 500ms
+                  - if:
+                      condition:
+                        switch.is_off: mute
+                      then:
+                        - lambda: id(va).set_use_wake_word(true);
+                        - voice_assistant.start_continuous:
+            - if:
+                condition:
+                  lambda: return x == "On device";
+                then:
+                  - lambda: id(va).set_use_wake_word(false);
+                  - voice_assistant.stop
+                  - delay: 500ms
+                  - if:
+                      condition:
+                        switch.is_off: mute
+                      then:
+                        - micro_wake_word.start
+
+globals:
+  - id: init_in_progress
+    type: bool
+    restore_value: false
+    initial_value: "true"
+  - id: voice_assistant_phase
+    type: int
+    restore_value: false
+    initial_value: ${voice_assist_not_ready_phase_id}
+  - id: global_first_active_timer
+    type: voice_assistant::Timer
+    restore_value: false
+  - id: global_is_timer_active
+    type: bool
+    restore_value: false
+  - id: global_first_timer
+    type: voice_assistant::Timer
+    restore_value: false
+  - id: global_is_timer
+    type: bool
+    restore_value: false
+  - id: last_battery_percent
+    type: int
+    restore_value: no
+    initial_value: '-1'
+  - id: playing_internal_sound
+    type: bool
+    restore_value: no
+    initial_value: 'false'
+
+  - id: RED
+    type: Color
+    initial_value: 'Color(255, 0, 0)'
+  - id: GREEN
+    type: Color
+    initial_value: 'Color(0, 255, 0)'
+  - id: BLUE
+    type: Color
+    initial_value: 'Color(0, 0, 255)'
+  - id: YELLOW
+    type: Color
+    initial_value: 'Color(255, 255, 0)'
+  - id: ORANGE
+    type: Color
+    initial_value: 'Color(255, 165, 0)'
+
+### EYES
+  - id: eyeTarget
+    type: std::pair<int, int>
+    restore_value: no
+    initial_value: '{${screen_center_x}, ${screen_center_y}}'
+
+  - id: blink_left
+    type: float
+    restore_value: no
+    initial_value: '1.0'
+  - id: blink_right
+    type: float
+    restore_value: no
+    initial_value: '1.0'
+
+  - id: eye_offset_x
+    type: int
+    restore_value: no
+    initial_value: '0'
+  - id: eye_offset_y
+    type: int
+    restore_value: no
+    initial_value: '0'
+
+  - id: last_interaction
+    type: unsigned long
+    restore_value: no
+    initial_value: '0'  
+
+  - id: current_page
+    type: std::string
+    restore_value: no
+    initial_value: '"idle_page"'
+
+  - id: idle_motion_pattern
+    type: int
+    initial_value: '0'
+  - id: idle_motion_step
+    type: int
+    initial_value: '0'
+  - id: idle_motion_active
+    type: bool
+    restore_value: no
+    initial_value: 'false'
+  - id: last_idle_motion
+    type: unsigned long
+    restore_value: no
+    initial_value: '0'
+  - id: animation_step_time
+    type: unsigned long
+    initial_value: '0'
+
+
+image:
+  - file: ${error_illustration_file}
+    id: casita_error
+    resize: ${imagewidth}x${imageheight}
+    type: RGB
+    transparency: alpha_channel
+  - file: ${idle_illustration_file}
+    id: casita_idle
+    resize: ${imagewidth}x${imageheight}
+    type: RGB
+    transparency: alpha_channel
+  - file: ${listening_illustration_file}
+    id: casita_listening
+    resize: ${imagewidth}x${imageheight}
+    type: RGB
+    transparency: alpha_channel
+  - file: ${thinking_illustration_file}
+    id: casita_thinking
+    resize: ${imagewidth}x${imageheight}
+    type: RGB
+    transparency: alpha_channel
+  - file: ${replying_illustration_file}
+    id: casita_replying
+    resize: ${imagewidth}x${imageheight}
+    type: RGB
+    transparency: alpha_channel
+  - file: ${timer_finished_illustration_file}
+    id: casita_timer_finished
+    resize: ${imagewidth}x${imageheight}
+    type: RGB
+    transparency: alpha_channel
+  - file: ${loading_illustration_file}
+    id: casita_initializing
+    resize: ${imagewidth}x${imageheight}
+    type: RGB
+    transparency: alpha_channel
+  - file: ${mute_illustration_file}
+    id: casita_muted
+    resize: ${imagewidth}x${imageheight}
+    type: RGB
+    transparency: alpha_channel
+  - file: https://github.com/esphome/wake-word-voice-assistants/raw/main/error_box_illustrations/error-no-wifi.png
+    id: error_no_wifi
+    resize: ${imagewidth}x${imageheight}
+    type: RGB
+    transparency: alpha_channel
+  - file: https://github.com/esphome/wake-word-voice-assistants/raw/main/error_box_illustrations/error-no-ha.png
+    id: error_no_ha
+    resize: ${imagewidth}x${imageheight}
+    type: RGB
+    transparency: alpha_channel
+
+font:
+  - file:
+      type: gfonts
+      family: ${font_family}
+      weight: 300
+      italic: true
+    id: font_request
+    size: 15
+    glyphsets:
+      - ${font_glyphsets}
+  - file:
+      type: gfonts
+      family: ${font_family}
+      weight: 300
+    id: font_response
+    size: 15
+    glyphsets:
+      - ${font_glyphsets}
+  - file:
+      type: gfonts
+      family: ${font_family}
+      weight: 300
+    id: font_battery
+    size: 24
+    glyphsets:
+      - ${font_glyphsets}
+  - file:
+      type: gfonts
+      family: ${font_family}
+      weight: 300
+    id: font_timer
+    size: 30
+    glyphsets:
+      - ${font_glyphsets}
+
+text_sensor:
+  - id: text_request
+    platform: template
+    name: Text Request
+    icon: "mdi:comment-text-outline"
+    on_value:
+      lambda: |-
+        if(id(text_request).state.length()>32) {
+          std::string name = id(text_request).state.c_str();
+          std::string truncated = esphome::str_truncate(name.c_str(),31);
+          id(text_request).state = (truncated+"...").c_str();
+        }
+
+  - id: text_response
+    platform: template
+    name: Text Response
+    icon: "mdi:comment-text"
+    on_value:
+      lambda: |-
+        if(id(text_response).state.length()>32) {
+          std::string name = id(text_response).state.c_str();
+          std::string truncated = esphome::str_truncate(name.c_str(),31);
+          id(text_response).state = (truncated+"...").c_str();
+        }
+
+color:
+  - id: idle_color
+    hex: ${idle_illustration_background_color}
+  - id: listening_color
+    hex: ${listening_illustration_background_color}
+  - id: thinking_color
+    hex: ${thinking_illustration_background_color}
+  - id: replying_color
+    hex: ${replying_illustration_background_color}
+  - id: loading_color
+    hex: ${loading_illustration_background_color}
+  - id: error_color
+    hex: ${error_illustration_background_color}
+  - id: muted_color
+    hex: ${error_illustration_background_color}  
+  - id: finished_color
+    hex: ${error_illustration_background_color} 
+  - id: active_timer_color
+    hex: "26ed3a"
+  - id: paused_timer_color
+    hex: "3b89e3"
+
+spi:
+  - id: spi_bus
+    clk_pin: GPIO${spi_clk_pin}
+    mosi_pin: GPIO${spi_mosi_pin}
+
+display:
+  - platform: ili9xxx
+    id: s3_box_lcd
+    model: ${displaymodel}
+    invert_colors: ${invertcolors}
+    data_rate: 40MHz
+    cs_pin: GPIO${lcd_cs_pin}
+    dc_pin: GPIO${lcd_dc_pin}
+    reset_pin:
+      number: GPIO${lcd_reset_pin}
+    update_interval: 0.1s
+    dimensions:
+      height: ${imageheight}
+      width: ${imagewidth}
+
+    pages:      
+      - id: idle_page
+        lambda: |-
+          id(current_page) = "idle_page";
+
+          // --- ADVANCED NON-BLOCKING ANIMATION ENGINE V4 (Robust & Self-Contained) ---
+          const unsigned long now = millis();
+
+          // If an animation is currently active, run its logic.
+          if (id(idle_motion_active)) {
+            int pattern = id(idle_motion_pattern);
+            int step = id(idle_motion_step);
+            bool animation_is_finished = false;
+
+            switch(pattern) {
+              case 0: // Quick Glance - now fully self-contained
+                if (step == 0) { // Step 0: Set position and wait for travel time
+                  id(eye_offset_x) = (rand() % 5 - 2) * 15;
+                  id(eye_offset_y) = (rand() % 5 - 2) * 15;
+                  
+                  // After setting the position, immediately move to the next step's logic.
+                  id(idle_motion_step) = 1;
+                  id(animation_step_time) = now;
+
+                } else if (step == 1) { // Step 1: Wait for hold time
+                  if (now - id(animation_step_time) > 2000) { // Hold for 2000ms
+                    animation_is_finished = true;
+                  }
+                }
+                break;
+
+              case 1: // Look Left -> Right -> Center
+                if (now - id(animation_step_time) > 800) {
+                  if (step == 0) { id(eye_offset_x) = -${max_eye_movement}; id(eye_offset_y) = 0; }
+                  else if (step == 1) { id(eye_offset_x) = ${max_eye_movement}; } 
+                  else if (step == 2) { id(eye_offset_x) = 0; }
+                  else { animation_is_finished = true; }
+                  
+                  if (!animation_is_finished) { id(idle_motion_step) += 1; id(animation_step_time) = now; }
+                }
+                break;
+
+              case 2: // Look Diagonal
+                if (now - id(animation_step_time) > 800) {
+                  if (step == 0) { id(eye_offset_x) = -${max_eye_movement}; id(eye_offset_y) = -${max_eye_movement}; } 
+                  else if (step == 1) { id(eye_offset_x) = ${max_eye_movement}; id(eye_offset_y) = ${max_eye_movement}; }
+                  else if (step == 2) { id(eye_offset_x) = 0; id(eye_offset_y) = 0; }
+                  else { animation_is_finished = true; }
+                  
+                  if (!animation_is_finished) { id(idle_motion_step) += 1; id(animation_step_time) = now; }
+                }
+                break;
+
+              case 3: // Circular Motion
+                if (now - id(animation_step_time) > 300) {
+                  if (step < 8) {
+                    const int radius = ${max_eye_movement};
+                    const float angle = step * 3.14159f / 4.0f;
+                    id(eye_offset_x) = static_cast<int>(radius * cosf(angle));
+                    id(eye_offset_y) = static_cast<int>(radius * sinf(angle));
+                  } else { animation_is_finished = true; }
+                  
+                  if (!animation_is_finished) { id(idle_motion_step) += 1; id(animation_step_time) = now; }
+                }
+                break;
+
+              case 4: // Horizontal Sweep
+                if (now - id(animation_step_time) > 300) {
+                  if (step < 11) { id(eye_offset_x) = -${max_eye_movement} + (step * 6); } 
+                  else { animation_is_finished = true; }
+
+                  if (!animation_is_finished) { id(idle_motion_step) += 1; id(animation_step_time) = now; }
+                }
+                break;
+
+              case 5: // Squinting animation
+                if (step == 0) {
+                  if (now - id(animation_step_time) > 3000) { id(idle_motion_step) = 1; id(animation_step_time) = now; }
+                } else { animation_is_finished = true; }
+                break;
+
+              case 6: // Thinking Hold animation
+                // This animation does nothing. It just holds its initial position.
+                // It will be stopped externally when the 'replying' phase begins.
+                break;
+            }
+
+            // --- Check if any animation has finished and reset state ---
+            if (animation_is_finished) {
+              id(idle_motion_active) = false;
+              id(last_idle_motion) = now;
+              id(eye_offset_x) = 0;
+              id(eye_offset_y) = 0;
+              id(blink_left) = 1.0;
+              id(blink_right) = 1.0;
+            }
+          }
+          // Else, if no animation is active, check if we should start a new one.
+          else if (now - id(last_interaction) > 10000 && now - id(last_idle_motion) > 15000) {
+            id(idle_motion_active) = true;
+            id(last_idle_motion) = now;
+            id(animation_step_time) = now;
+            id(idle_motion_step) = 0;
+            id(idle_motion_pattern) = random_uint32() % 6;
+
+            // ADD THIS LINE TO LOG THE CHOSEN PATTERN
+            ESP_LOGI("idle_animation", "Starting new idle pattern: %d", id(idle_motion_pattern));
+
+            // --- Corrected Initial setup for patterns ---
+            // This block sets the starting state for animations before the main engine takes over.
+            switch (id(idle_motion_pattern)) {
+              case 1: // Look Left
+                id(eye_offset_x) = -${max_eye_movement}; id(eye_offset_y) = 0;
+                break;
+              case 2: // Look Diagonal
+                id(eye_offset_x) = -${max_eye_movement}; id(eye_offset_y) = -${max_eye_movement};
+                break;
+              case 3: // Circular Motion - needs a starting point
+                id(eye_offset_x) = ${max_eye_movement}; id(eye_offset_y) = 0; // Start at angle 0
+                break;
+              case 4: // Horizontal Sweep - needs a starting point
+                id(eye_offset_x) = -${max_eye_movement}; id(eye_offset_y) = 0; // Start at far left
+                break;
+              case 5: // Squint
+                id(blink_left) = 0.4;
+                id(blink_right) = 0.4;
+                break;
+              // NOTE: Case 0 is intentionally left out because it is fully self-contained and sets its own position.
+            }
+          }
+
+          // Update the target based on current offsets
+          id(eyeTarget) = {${screen_center_x} + id(eye_offset_x), ${screen_center_y} + id(eye_offset_y)};
+
+          // --- END OF EYE MOVEMENT LOGIC ---
+
+          // --- Call the drawing script ---
+          id(draw_eyes_and_ui).execute(id(idle_color), ${eye_radius}, ${pupil_radius_normal}, Color::BLACK);
+          
+          // --- UI Overlay Logic ---
+          if (id(show_battery_status).state) {
+            const int box_top = 2;
+            const int box_height = 28;
+            it.filled_rectangle((it.get_width() / 2) - ${eye_radius}, box_top, 80, box_height, Color::WHITE);
+            it.rectangle((it.get_width() / 2) - ${eye_radius}, box_top, 80, box_height, Color::BLACK);
+
+            char battery_text[16];
+            snprintf(battery_text, sizeof(battery_text), "%.0f%%", id(battery_percentage).state);
+
+            it.printf(it.get_width() / 2, 4, id(font_battery), Color::BLACK, TextAlign::TOP_CENTER, "%.0f%%", id(battery_percentage).state);
+          }
+
+          id(draw_timer_timeline).execute();
+          id(draw_active_timer_widget).execute();
+
+
+      - id: listening_page
+        lambda: |-
+          id(current_page) = "listening_page";
+
+          // No animation logic on this page, pupils are static
+          id(eyeTarget) = {${screen_center_x}, ${screen_center_y}};
+
+          // --- Call the drawing script ---
+          id(draw_eyes_and_ui).execute(id(listening_color), ${eye_radius}, ${pupil_radius_big}, Color::BLACK);
+
+          id(draw_timer_timeline).execute();
+
+      - id: thinking_page
+        lambda: |-
+          id(current_page) = "thinking_page";
+
+          // --- Run the animation engine to hold the "thinking" pose ---
+          const unsigned long now = millis();
+          if (id(idle_motion_active)) {
+            // (This is a simplified copy of the main engine logic, containing only what's needed for the hold)
+            int pattern = id(idle_motion_pattern);
+            if (pattern == 6) {
+              // The "hold" pattern does nothing, just keeps the animation active.
+            } else {
+              // If for some reason a different animation is active, end it.
+              id(idle_motion_active) = false;
+            }
+          }
+          id(eyeTarget) = {${screen_center_x} + id(eye_offset_x), ${screen_center_y} + id(eye_offset_y)};
+
+          // --- Call the drawing script with small pupils ---
+          id(draw_eyes_and_ui).execute(id(thinking_color), ${eye_radius}, ${pupil_radius_small}, Color::BLACK);
+
+          if (id(show_text).state) {
+            it.filled_rectangle(20, 20, 200, 30, Color::WHITE);
+            it.rectangle(20, 20, 200, 30, Color::BLACK);
+            it.printf(30, 25, id(font_request), Color::BLACK, "%s", id(text_request).state.c_str());
+          }
+
+          id(draw_timer_timeline).execute();
+
+      - id: replying_page
+        lambda: |-
+          id(current_page) = "replying_page";
+
+          // --- Call the drawing script ---
+          id(draw_eyes_and_ui).execute(id(replying_color), ${eye_radius}, ${pupil_radius_normal}, Color::BLACK);
+
+          int y_offset = 190;
+          if (it.get_height() == 320) {
+            y_offset = 270;
+          }
+
+          if (id(show_text).state) {
+            it.filled_rectangle(20, y_offset, 200, 30, Color::WHITE);
+            it.rectangle(20, y_offset, 200, 30, Color::BLACK);
+            it.printf(30, y_offset + 5, id(font_response), Color::BLACK, "%s", id(text_response).state.c_str());
+          }
+
+          id(draw_timer_timeline).execute();
+
+      - id: muted_page
+        lambda: |-
+          id(current_page) = "muted_page";
+
+          id(eyeTarget) = {${screen_center_x}, ${screen_center_y}};
+
+          // --- Call the drawing script ---
+          id(draw_eyes_and_ui).execute(id(muted_color), ${eye_radius}, ${pupil_radius_normal}, Color::BLACK);
+
+          // --- Draw the 10px thick 'X' mouth on top by stacking lines ---
+          const int mouth_center_y = ${screen_center_y} + 70;
+          const int mouth_half_size = 10;
+          const esphome::Color mouth_color = Color::WHITE;
+
+          // Loop 10 times to create a 10px thick line.
+          // An offset from -4 to 5 is 10 iterations, centered on the original line.
+          for (int offset = -4; offset <= 5; offset++) {
+            // Draw line from top-left to bottom-right
+            it.line(
+              ${screen_center_x} - mouth_half_size + offset, mouth_center_y - mouth_half_size,
+              ${screen_center_x} + mouth_half_size + offset, mouth_center_y + mouth_half_size,
+              mouth_color
+            );
+
+            // Draw line from top-right to bottom-left
+            it.line(
+              ${screen_center_x} + mouth_half_size + offset, mouth_center_y - mouth_half_size,
+              ${screen_center_x} - mouth_half_size + offset, mouth_center_y + mouth_half_size,
+              mouth_color
+            );
+          }
+
+
+      - id: error_page
+        lambda: |-
+          id(current_page) = "error_page";
+
+          // --- Call the drawing script ---
+          id(draw_eyes_and_ui).execute(id(error_color), ${eye_radius}, ${pupil_radius_normal}, Color::BLACK);
+
+      - id: timer_finished_page
+        lambda: |-
+          id(current_page) = "timer_finished_page";
+
+          // --- Call the drawing script ---
+          id(draw_eyes_and_ui).execute(id(finished_color), ${eye_radius}, ${pupil_radius_normal}, Color::BLACK);
+
+      - id: no_ha_page
+        lambda: |-
+          id(current_page) = "no_ha_page";
+          it.image((it.get_width() / 2), (it.get_height() / 2), id(error_no_ha), ImageAlign::CENTER);
+      - id: no_wifi_page
+        lambda: |-
+          id(current_page) = "no_wifi_page";
+          it.image((it.get_width() / 2), (it.get_height() / 2), id(error_no_wifi), ImageAlign::CENTER);
+      - id: initializing_page
+        lambda: |-
+          id(current_page) = "initializing_page";
+          it.fill(id(loading_color));
+          it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_initializing), ImageAlign::CENTER);
