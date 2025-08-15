@@ -1,0 +1,3238 @@
+# ----------------------------------------------------------------
+# 1. SUBSTITUTIONS & CORE CONFIG
+# ----------------------------------------------------------------
+substitutions:
+  name: eve
+  friendly_name: Eve
+
+## SETTINGS ######################################################################################################################################
+  
+  imagemodel: "eve" 
+  startup_sound: "available" # available, caught, core, hardware, home, run, iron_man_theme
+
+  imagewidth: "240" # GC9A01A (Ball v2 & Muma & Puck) "240"
+  imageheight: "240" # GC9A01A (Ball v2 & Muma & Puck) "240"
+  displaymodel: "GC9A01A" # GC9A01A (Ball v2 & Puck) or ST7789V (Muma)
+  invertcolors: "true" # GC9A01A/ST7789V (Ball v2 & Muma & Puck) "true"
+  
+  loglevel: "INFO" # DEBUG / INFO
+
+##################################################################################################################################################
+
+  # Hardware v2 pin mappings
+  sda_pin_bus_a: "15"        # I2C Bus A SDA
+  scl_pin_bus_a: "14"        # I2C BUS A SCL
+  sda_pin_bus_b: "11"        # I2C Bus B SDA
+  scl_pin_bus_b: "7"         # I2C BUS B SCL
+
+  i2s_lrclk_pin: "45"        # I2S LRCLK (Word Select)
+  i2s_bclk_pin: "9"          # I2S BCLK (Bit Clock)
+  i2s_mclk_pin: "16"         # I2S MCLK (Master Clock)
+  i2s_din_pin: "10"          # I2S Data In (Mic)
+  i2s_dout_pin: "8"          # I2S Data Out (Speaker)
+
+  speaker_enable_pin: "46"   # Speaker Enable
+  touch_input_pin: "12"      # Touch interrupt
+  touch_reset_pin: "6"       # Touch Reset
+
+  backlight_output_pin: "42" # Display Backlight
+  lcd_cs_pin: "5"            # Display CS (Chip Select)
+  lcd_dc_pin: "47"           # Display DC (Data/Command)
+  lcd_reset_pin: "38"        # Display Reset
+  spi_clk_pin: "4"           # SPI Clock
+  spi_mosi_pin: "2"          # SPI MOSI (Data Out)
+
+  left_top_button_pin: "0"   # Main Button
+  led_pin: "48"              # RGB LED (WS2812)
+  battery_adc_pin: "1"       # Battery Voltage ADC
+
+##################################################################################################################################################
+
+  web_prefix: "https://github.com/K-RAD/xiaozhi-esphome-animated/raw/main/"
+  # web_prefix: "" # local storage
+  
+  loading_illustration_file: ${web_prefix}images/${imagemodel}/${imagewidth}x${imageheight}/loading.png
+  error_no_wifi_file: ${web_prefix}images/${imagemodel}/${imagewidth}x${imageheight}/error-no-wifi.png
+  error_no_ha_file: ${web_prefix}images/${imagemodel}/${imagewidth}x${imageheight}/error-no-ha.png
+
+  startup_sound_file: ${web_prefix}sounds/${startup_sound}.flac
+  timer_finished_sound_file: ${web_prefix}sounds/timer_finished.flac
+  wake_word_triggered_sound_file: ${web_prefix}sounds/wake_word_triggered.flac
+
+  loading_illustration_background_color: "000000"
+  idle_illustration_background_color: "000000"
+  listening_illustration_background_color: "000000"
+  thinking_illustration_background_color: "000000"
+  replying_illustration_background_color: "000000"
+  error_illustration_background_color: "000000"
+
+  voice_assist_idle_phase_id: "1"
+  voice_assist_listening_phase_id: "2"
+  voice_assist_thinking_phase_id: "3"
+  voice_assist_replying_phase_id: "4"
+  voice_assist_not_ready_phase_id: "10"
+  voice_assist_error_phase_id: "11"
+  voice_assist_muted_phase_id: "12"
+  voice_assist_timer_finished_phase_id: "20"
+
+  allowed_characters: " !#%'()+,-./0123456789:;<>?@ABCDEFGHIJKLMNOPQRSTUVWYZ[]_abcdefghijklmnopqrstuvwxyz{|}°²³µ¿ÁÂÄÅÉÖÚßàáâãäåæçèéêëìíîðñòóôõöøùúûüýþāăąćčďĐđēėęěğĮįıļľŁłńňőřśšťũūůűųźŻżŽžơưșțΆΈΌΐΑΒΓΔΕΖΗΘΚΜΝΠΡΣΤΥΦάέήίαβγδεζηθικλμνξοπρςστυφχψωϊόύώАБВГДЕЖЗИКЛМНОПРСТУХЦЧШЪЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёђєіїјљњћאבגדהוזחטיכלםמןנסעפץצקרשת،ءآأإئابةتجحخدذرزسشصضطظعغفقكلمنهوىيٹپچڈکگںھہیےংকচতধনফবযরলশষস়ািু্చయలిెొ్ംഅആഇഈഉഎഓകഗങചജഞടഡണതദധനപഫബഭമയരറലളവശസഹാിീുൂെേൈ്ൺൻർൽൾაბგდევზთილმნოპრსტუფქყშჩცძჭხạảấầẩậắặẹẽếềểệỉịọỏốồổỗộớờởợụủứừửữựỳ—、一上不个中为主乾了些亮人任低佔何作供依侧係個側偵充光入全关冇冷几切到制前動區卧厅厨及口另右吊后吗启吸呀咗哪唔問啟嗎嘅嘛器圍在场執場外多大始安定客室家密寵对將小少左已帘常幫幾库度庫廊廚廳开式後恆感態成我戲戶户房所扇手打执把拔换掉控插摄整斯新明是景暗更最會有未本模機檯櫃欄次正氏水沒没洗活派温測源溫漏潮激濕灯為無煙照熱燈燥物狀玄现現瓦用發的盞目着睡私空窗立笛管節簾籬紅線红罐置聚聲脚腦腳臥色节著行衣解設調請謝警设调走路車车运連遊運過道邊部都量鎖锁門閂閉開關门闭除隱離電震霧面音頂題顏颜風风食餅餵가간감갔강개거게겨결경고공과관그금급기길깥꺼껐꼽나난내네놀누는능니다닫담대더데도동됐되된됨둡드든등디때떤뜨라래러렇렌려로료른를리림링마많명몇모무문물뭐바밝방배변보부불블빨뽑사산상색서설성세센션소쇼수스습시신실싱아안않알았애야어얼업없었에여연열옆오온완외왼요운움워원위으은을음의이인일임입있작잠장재전절정제져조족종주줄중줘지직진짐쪽차창천최추출충치침커컴켜켰쿠크키탁탄태탬터텔통트튼티파팬퍼폰표퓨플핑한함해했행혀현화활후휴힘，？"
+
+  font_glyphsets: "GF_Latin_Core"
+  font_family: Figtree
+  
+##################################################################################################################################################
+
+  # --- Eye Geometry & Animation Substitutions ---
+  screen_center_x: "120" # imagewidth / 2
+  screen_center_y: "120" # imageheight / 2
+  
+  eye_radius: "40"
+  
+  pupil_radius_small: "7"
+  pupil_radius_normal: "15"
+  pupil_radius_big: "25"
+
+  eye_spacing: "35" # How far from the screen's center each eye is located
+  cross_eye_amount: "8"
+  
+  max_eye_movement: "30" # The furthest the eye can look from the center
+
+##################################################################################################################################################
+  
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  min_version: 2025.5.0
+  name_add_mac_suffix: false
+  on_boot:
+    priority: 600
+    then:
+      - lambda: |-
+          // Check if logger is in DEBUG mode
+          #ifdef ESPHOME_LOG_LEVEL_DEBUG
+            id(debug_mode) = true;
+            ESP_LOGI("debug", "Debug mode detected - diagnostic sensors will be visible");
+          #else
+            id(debug_mode) = false;
+            ESP_LOGI("debug", "Normal mode - diagnostic sensors hidden");
+          #endif
+      - script.execute: draw_display
+      - component.update: battery_voltage
+      - component.update: battery_percentage
+      - delay: 30s
+      - if:
+          condition:
+            lambda: return id(init_in_progress);
+          then:
+            - lambda: id(init_in_progress) = false;
+            - script.execute: draw_display
+      - lambda: |-
+          // Initialize blink timer
+          id(next_blink_at) = millis() + 3000;  // First blink after 3 seconds 
+      - script.execute: random_personality_quirk
+
+esp32:
+  board: esp32-s3-devkitc-1
+  flash_size: 16MB
+  cpu_frequency: 240MHz
+  framework:
+    type: esp-idf
+    sdkconfig_options:
+      CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240: "y"
+      CONFIG_ESP32S3_DATA_CACHE_64KB: "y"
+      CONFIG_ESP32S3_DATA_CACHE_LINE_64B: "y"
+
+psram:
+  mode: octal
+  speed: 80MHz
+
+api:
+  on_client_connected:
+    - script.execute: draw_display
+    - if:
+        condition:
+          switch.is_on: startup_sound_switch
+        then:
+          - script.execute:
+              id: play_sound
+              priority: true
+              sound_file: !lambda return id(ready_sound);
+          - delay: 300ms
+  on_client_disconnected:
+    - script.execute: draw_display
+
+ota:
+  - platform: esphome
+    id: ota_esphome
+
+logger:
+  hardware_uart: USB_SERIAL_JTAG
+  level: ${loglevel}
+  logs:
+    media_player: INFO
+    voice_assistant: INFO
+    wake_word: INFO
+    i2s_audio: ${loglevel}  # See I2S issues
+    micro_wake_word: WARN
+    recovery: INFO
+    adc: ERROR
+    
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "Ball v2 Hotspot"
+    password: !secret password
+  on_connect:
+    - script.execute: draw_display
+  on_disconnect:
+    - script.execute: draw_display
+
+captive_portal:
+
+
+# ----------------------------------------------------------------
+# 2. HARDWARE INTERFACES & DRIVERS
+# ----------------------------------------------------------------
+i2c:
+  - id: bus_a
+    sda: GPIO${sda_pin_bus_a}
+    scl: GPIO${scl_pin_bus_a}
+    scan: true
+  - id: bus_b
+    sda: GPIO${sda_pin_bus_b}
+    scl: GPIO${scl_pin_bus_b}
+    scan: true
+
+spi:
+  - id: spi_bus
+    clk_pin: GPIO${spi_clk_pin}
+    mosi_pin: GPIO${spi_mosi_pin}
+
+i2s_audio:
+  - id: i2s_audio_bus
+    i2s_lrclk_pin: GPIO${i2s_lrclk_pin}
+    i2s_bclk_pin: GPIO${i2s_bclk_pin}
+    i2s_mclk_pin: GPIO${i2s_mclk_pin}
+
+audio_dac:
+  - platform: es8311
+    i2c_id: bus_a 
+    id: es8311_dac
+    bits_per_sample: 16bit
+    sample_rate: 16000
+
+microphone:
+  - platform: i2s_audio
+    id: i2s_mics
+    sample_rate: 16000
+    i2s_din_pin: GPIO${i2s_din_pin}
+    bits_per_sample: 16bit
+    adc_type: external
+    channel: left
+    pdm: false
+    # ring_buffer_size: 32768  # Doubled from default 16384
+    
+speaker:
+  - platform: i2s_audio
+    id: i2s_audio_speaker
+    i2s_dout_pin: GPIO${i2s_dout_pin}
+    dac_type: external
+    sample_rate: 16000
+    bits_per_sample: 16bit
+    channel: left
+    audio_dac: es8311_dac
+    buffer_duration: 100ms
+    # task_priority: 1
+
+output:
+  - platform: ledc
+    pin: GPIO${backlight_output_pin}
+    id: backlight_output
+    inverted: true 
+
+light:
+  - platform: monochromatic
+    id: Sled
+    name: Screen
+    icon: "mdi:television"
+    entity_category: config
+    output: backlight_output
+    restore_mode: ALWAYS_ON
+    default_transition_length: 250ms
+  - platform: esp32_rmt_led_strip
+    id: led
+    name: none
+    disabled_by_default: false
+    entity_category: config
+    pin: GPIO${led_pin}
+    default_transition_length: 0s
+    chipset: WS2812
+    num_leds: 1
+    rgb_order: grb
+    effects:
+      - pulse:
+          name: "Slow Pulse"
+          transition_length: 250ms
+          update_interval: 250ms
+          min_brightness: 50%
+          max_brightness: 100%
+      - pulse:
+          name: "Fast Pulse"
+          transition_length: 100ms
+          update_interval: 100ms
+          min_brightness: 50%
+          max_brightness: 100%
+
+touchscreen:
+  - platform: cst816
+    i2c_id: bus_b
+    interrupt_pin: ${touch_input_pin}
+    reset_pin: ${touch_reset_pin}
+    id: touch_dp
+    on_touch:
+      then:
+        - if:
+            condition:
+              lambda: 'return (millis() - id(last_touch_time)) > 500;'
+            then:
+              - lambda: 'id(last_touch_time) = millis();'
+              # Only publish touch event if timer is NOT ringing
+              - if:
+                  condition:
+                    switch.is_off: timer_ringing
+                  then:
+                    - binary_sensor.template.publish:
+                        id: touch_input
+                        state: ON
+                  else:
+                    # Timer is ringing - handle it internally without publishing
+                    - switch.turn_off: timer_ringing
+                    - logger.log:
+                        level: DEBUG
+                        format: "Timer stopped via touch - event not published to HA"
+    on_release:
+      then:
+        - binary_sensor.template.publish:
+            id: touch_input
+            state: OFF
+
+binary_sensor:
+  - platform: template
+    name: "Touch Button"
+    id: touch_input
+    on_multi_click:
+      # Single tap
+      - timing:
+          - ON for 40ms to 400ms
+          - OFF for at least 330ms
+        then:
+          - if:
+              condition:
+                switch.is_on: touch_to_wake_switch
+              then:
+                # Only handle wake word if NOT dealing with timer
+                - if:
+                    condition:
+                      lambda: return id(wake_word_engine_location).state == "On device";
+                    then:
+                      - if:
+                          condition:
+                            not:
+                              voice_assistant.is_running:
+                          then:
+                            - voice_assistant.start:
+                          else:
+                            - voice_assistant.stop:
+              else:
+                - logger.log:
+                    level: DEBUG
+                    format: "Touch wake is disabled, ignoring tap."
+      - timing:
+          - ON for at least 1s
+        then:
+          - switch.toggle: show_battery_status
+          - script.execute: draw_display
+
+  - platform: gpio
+    pin:
+      number: GPIO${left_top_button_pin}
+      mode: INPUT_PULLUP
+      ignore_strapping_warning: true
+      inverted: true
+    id: left_top_button
+    internal: true
+    on_multi_click:
+      - timing:
+          - ON for at least 50ms
+          - OFF for at least 50ms
+        then:
+          - if:
+              condition:
+                switch.is_on: timer_ringing
+              then:
+                - switch.turn_off: timer_ringing
+              else:
+                - if:
+                    condition:
+                      lambda: return id(wake_word_engine_location).state == "On device";
+                    then:
+                      - if:
+                          condition:
+                            not:
+                              voice_assistant.is_running:
+                          then:
+                            - voice_assistant.start:                     
+                          else:
+                            - voice_assistant.stop:  
+      - timing:
+          - ON for at least 10s
+        then:
+          - button.press: factory_reset_btn
+
+  - platform: template
+    name: "[DEBUG] Micro Wake Word Status"
+    id: debug_mww_status
+    icon: "mdi:microphone-message"
+    entity_category: diagnostic
+    disabled_by_default: true  # Hidden by default in HA
+
+  - platform: template
+    name: "[DEBUG] Voice Assistant Status"
+    id: debug_va_status
+    icon: "mdi:assistant"
+    entity_category: diagnostic
+    disabled_by_default: true
+
+  - platform: template
+    name: "[DEBUG] Speaker Status"
+    id: debug_speaker_status
+    icon: "mdi:speaker"
+    entity_category: diagnostic
+    disabled_by_default: true
+
+  - platform: template
+    name: "[DEBUG] TTS Lock Status"
+    id: debug_tts_lock
+    icon: "mdi:lock"
+    entity_category: diagnostic
+    disabled_by_default: true
+
+button:
+  - platform: factory_reset
+    id: factory_reset_btn
+    internal: true
+    
+  - platform: template
+    name: "[DEBUG] Simple Status Check"
+    id: debug_status_check
+    icon: "mdi:information"
+    entity_category: diagnostic
+    disabled_by_default: true    
+    on_press:
+      - if:
+          condition:
+            micro_wake_word.is_running:
+          then:
+            - logger.log:
+                level: INFO
+                format: "✓ Micro wake word is running"
+          else:
+            - logger.log:
+                level: WARN
+                format: "✗ Micro wake word is NOT running"
+      - if:
+          condition:
+            voice_assistant.is_running:
+          then:
+            - logger.log:
+                level: INFO
+                format: "✓ Voice assistant is running"
+          else:
+            - logger.log:
+                level: WARN
+                format: "✗ Voice assistant is NOT running"
+      - if:
+          condition:
+            speaker.is_playing:
+                id: i2s_audio_speaker
+          then:
+            - logger.log:
+                level: INFO
+                format: "✓ Speaker is playing"
+          else:
+            - logger.log:
+                level: INFO
+                format: "✓ Speaker is idle"
+      - lambda: |-
+          ESP_LOGI("status", "TTS Lock: %s (count: %d)", 
+                   id(is_tts_active) ? "LOCKED" : "UNLOCKED",
+                   id(speaker_busy_count));
+          ESP_LOGI("status", "VA Phase: %d", id(voice_assistant_phase));
+ 
+          // Update all debug sensors now
+          id(debug_mww_status).publish_state(id(mww)->is_running());
+          id(debug_va_status).publish_state(id(va)->is_running());
+          id(debug_speaker_status).publish_state(id(i2s_audio_speaker)->is_running());
+          id(debug_tts_lock).publish_state(id(is_tts_active));
+ 
+  # Manual Control Buttons
+  
+  - platform: template
+    name: "Smooth Blink"
+    on_press:
+      - lambda: |-
+          id(blink_close_ms) = 120; id(blink_hold_ms) = 40; id(blink_open_ms) = 160;
+          id(blink_wink_eye) = 0; // both
+          id(blink_state) = 1; id(blink_started_at) = millis();
+  - platform: template
+    name: "Fast Blink"
+    on_press:
+      - lambda: |-
+          id(blink_close_ms) = 70; id(blink_hold_ms) = 20; id(blink_open_ms) = 90;
+          id(blink_wink_eye) = 0; // both
+          id(blink_state) = 1; id(blink_started_at) = millis();
+  - platform: template
+    name: "Wink Left"
+    on_press:
+      - lambda: |-
+          id(blink_close_ms) = 90; id(blink_hold_ms) = 30; id(blink_open_ms) = 110;
+          id(blink_wink_eye) = 1; id(blink_state) = 1; id(blink_started_at) = millis();
+
+  - platform: template
+    name: "Wink Right"
+    on_press:
+      - lambda: |-
+          id(blink_close_ms) = 90; id(blink_hold_ms) = 30; id(blink_open_ms) = 110;
+          id(blink_wink_eye) = 2; id(blink_state) = 1; id(blink_started_at) = millis();          
+  - platform: template
+    name: "Look Right"
+    on_press:
+      - lambda: |-
+          id(eye_offset_x) = 25;
+          id(last_interaction) = millis();
+      - script.execute: update_eye_target
+  - platform: template
+    name: "Look Left"
+    on_press:
+      - lambda: |-
+          id(eye_offset_x) = -25;
+          id(last_interaction) = millis();
+      - script.execute: update_eye_target
+  - platform: template
+    name: "Look Up"
+    on_press:
+      - lambda: |-
+          id(eye_offset_y) = -25;
+          id(last_interaction) = millis();
+      - script.execute: update_eye_target    
+  - platform: template
+    name: "Look Down"
+    on_press:
+      - lambda: |-
+          id(eye_offset_y) = 25;
+          id(last_interaction) = millis();
+      - script.execute: update_eye_target    
+  - platform: template
+    name: "Look Ahead"
+    on_press:
+      - lambda: |-
+          id(eye_offset_x) = 0;
+          id(eye_offset_y) = 0;
+          id(last_interaction) = millis();
+      - script.execute: update_eye_target
+      
+  # Animation Trigger Buttons
+  
+  - platform: template
+    name: "Animation Peek"
+    on_press:
+      - script.execute: trigger_peek
+
+  - platform: template
+    name: "Animation Bounce"
+    on_press:
+      - script.execute: trigger_bounce
+      
+  - platform: template
+    name: "Animation Eyeroll"
+    on_press:
+      - script.execute: eyeroll_animation
+      
+  - platform: template
+    name: "Animation Side Glance"
+    on_press:
+      - script.execute: side_glance
+
+  - platform: template
+    name: "Animation Happy Dance"
+    on_press:
+      - script.execute: happy_dance
+      
+  - platform: template
+    name: "Animation Surprised"
+    on_press:
+      - script.execute: surprised_pop
+      
+  - platform: template
+    name: "Animation Dizzy"
+    on_press:
+      - script.execute: dizzy_swirl
+
+  - platform: template
+    name: "Animation Confused"
+    on_press:
+      - script.execute: confused_look
+      
+  - platform: template
+    name: "Animation Double Take"
+    on_press:
+      - script.execute: double_take
+
+  - platform: template
+    name: "Animation Sleepy"
+    on_press:
+      - script.execute: sleepy_eyes
+      
+  - platform: template
+    name: "Animation Crosseyed"
+    on_press:
+      - script.execute: go_cross_eyed
+      
+  - platform: template
+    name: "Animation Curious"
+    on_press:
+      - script.execute: curious_tilt
+
+
+# ----------------------------------------------------------------
+# 3. LOGIC & STATE (Voice, Media, Sensors, Globals)
+# ----------------------------------------------------------------
+media_player:
+  - platform: speaker
+    name: None
+    id: external_media_player
+    volume_min: 0.5
+    volume_max: 0.8    
+    # task_priority: 1
+    announcement_pipeline:
+      speaker: i2s_audio_speaker
+      format: FLAC
+      sample_rate: 16000
+      num_channels: 1  # S3 Box only has one output channel
+    files:
+      - id: timer_finished_sound
+        file: ${timer_finished_sound_file}
+      - id: wake_word_triggered_sound
+        file: ${wake_word_triggered_sound_file}
+      - id: ready_sound
+        file: ${startup_sound_file}
+        
+    on_announcement:
+      - lambda: |-
+          ESP_LOGD("media_player", "Announcement started, setting TTS lock");
+          id(is_tts_active) = true;  // Set lock for announcements too (C++ style comment)
+      - script.execute: stop_wake_word
+      - if:
+          condition:
+            lambda: return id(wake_word_engine_location).state == "In Home Assistant";
+          then:
+            - wait_until:
+                condition:
+                  not:
+                    voice_assistant.is_running:
+                timeout: 2s
+      - if:
+          condition:
+            not:
+              voice_assistant.is_running:
+          then:
+            - if:
+                condition:
+                  lambda: 'return id(playing_internal_sound);'
+                then:
+                  - lambda: 'id(playing_internal_sound) = false;'
+                else:
+                  - lambda: id(voice_assistant_phase) = ${voice_assist_muted_phase_id};
+                  - script.execute: draw_display
+
+    on_idle:
+      - lambda: |-
+          ESP_LOGD("media_player", "Media player now idle, clearing TTS lock");
+          id(is_tts_active) = false;  // Clear lock HERE when audio is truly done
+      - delay: 500ms  # Give I2S time to fully release
+      - if:
+          condition:
+            and:
+              - not:
+                  voice_assistant.is_running:
+              - switch.is_off: mute
+          then:
+            - script.execute: start_wake_word
+            - script.execute: set_idle_or_mute_phase
+            - script.execute: draw_display
+
+micro_wake_word:
+  id: mww
+  vad:  # Add VAD configuration
+    probability_cutoff: 0.5
+    sliding_window_size: 10  
+  # ring_buffer_size: 32768  # Doubled from default 16384
+  models:
+    - model: alexa
+      probability_cutoff: 0.5
+      sliding_window_size: 5  
+    - model: hey_jarvis
+      probability_cutoff: 0.5
+      sliding_window_size: 5  
+    - model: okay_nabu
+      probability_cutoff: 0.5
+      sliding_window_size: 5       
+      
+  on_wake_word_detected:
+    # Check if audio is playing before processing wake word
+    - if:
+        condition:
+          lambda: 'return id(is_tts_active);'
+        then:
+          - logger.log:
+              level: INFO
+              format: "Wake word detected but TTS is active, ignoring"
+        else:
+          # Stop any existing wake word detection first
+          - voice_assistant.stop:
+          - micro_wake_word.stop:
+          - lambda: |-
+              // Quick visual feedback without delays
+              id(pupil_radius_target) = ${pupil_radius_big};
+          - if:
+              condition:
+                switch.is_on: wake_sound
+              then:
+                - script.execute:
+                    id: play_sound
+                    priority: true
+                    sound_file: !lambda return id(wake_word_triggered_sound);
+                - delay: 300ms
+          - voice_assistant.start:
+              wake_word: !lambda return wake_word;
+
+voice_assistant:
+  id: va
+  # task_priority: 2 # does not exist
+  # low_latency_mode: true # does not exist
+  microphone: i2s_mics
+  # speaker: i2s_audio_speaker
+  media_player: external_media_player
+  micro_wake_word: mww
+  noise_suppression_level: 2
+  auto_gain: 31dBFS
+  volume_multiplier: 2.0
+  on_listening:
+    - lambda: |-
+        id(pupil_radius_target) = ${pupil_radius_big};       // excited/dilated  
+        // Reset blink state to fully open
+        id(blink_left) = 1.0;
+        id(blink_right) = 1.0;
+        id(blink_state) = 0;
+        id(next_blink_at) = millis() + 5000;  // Don't blink for 5 seconds while listening        
+    - script.execute: reset_eye_position
+    - lambda: id(voice_assistant_phase) = ${voice_assist_listening_phase_id};
+    - text_sensor.template.publish:
+        id: text_request
+        state: "..."
+    - text_sensor.template.publish:
+        id: text_response
+        state: "..."
+    - script.execute: draw_display
+  on_stt_vad_end:
+    - lambda: |-
+        id(pupil_radius_target) = ${pupil_radius_small};     // "thinking"  
+    - lambda: id(voice_assistant_phase) = ${voice_assist_thinking_phase_id};
+    - script.execute: draw_display
+  on_stt_end:
+    - text_sensor.template.publish:
+        id: text_request
+        state: !lambda return x;
+    - script.execute: draw_display
+  on_tts_start:
+    - lambda: |-
+        ESP_LOGD("voice_assistant", "TTS Start - Stopping wake word and setting lock");
+        id(is_tts_active) = true;  // Set lock FIRST
+    - script.execute: stop_wake_word
+    - delay: 100ms
+    - script.execute: reset_eye_position  
+    - lambda: |-
+        // Add a happy squint when replying
+        id(blink_left) = 0.8;
+        id(blink_right) = 0.8;    
+        id(pupil_radius_target) = ${pupil_radius_normal};
+    - text_sensor.template.publish:
+        id: text_response
+        state: !lambda return x;
+    - lambda: id(voice_assistant_phase) = ${voice_assist_replying_phase_id};
+    - script.execute: draw_display
+    
+  on_end:
+    - lambda: |-
+        ESP_LOGD("voice_assistant", "Voice assistant ended (but audio may still be playing)");
+        id(pupil_radius_target) = ${pupil_radius_normal};
+        id(next_blink_at) = millis() + 1000;
+    - script.execute: reset_eye_position
+    
+    # Fallback for empty/silent replies (no TTS played)
+    - if:
+        condition:
+          and:
+            - lambda: return !id(is_tts_active);  # TTS didn't start
+            - not: media_player.is_announcing
+            - not:
+                speaker.is_playing:
+                  id: i2s_audio_speaker
+        then:
+          - lambda: ESP_LOGI("voice_assistant", "No TTS/announcement -> force stop VA and restart wake word");
+          - if:
+              condition:
+                voice_assistant.is_running
+              then:
+                - voice_assistant.stop:
+                - wait_until:
+                    condition:
+                      not:
+                        voice_assistant.is_running:
+                    timeout: 1s
+          - script.execute: start_wake_word
+
+    # Only clear UI/text here if there was NO TTS; otherwise defer to media_player.on_idle
+    - if:
+        condition:
+          lambda: return !id(is_tts_active);
+        then:
+          - delay: 2s
+          - script.execute: set_idle_or_mute_phase
+          - script.execute: draw_display
+          - text_sensor.template.publish:
+              id: text_request
+              state: ""
+          - text_sensor.template.publish:
+              id: text_response
+              state: ""
+
+  on_error:
+    - lambda: |-
+        id(pupil_radius_target) = ${pupil_radius_small};     // tense
+        // Add sad droop
+        id(blink_left) = 0.7;
+        id(blink_right) = 0.7;
+    - script.execute: reset_eye_position
+    - if:
+        condition:
+          lambda: return !id(init_in_progress);
+        then:
+          - lambda: id(voice_assistant_phase) = ${voice_assist_error_phase_id};
+          - script.execute: draw_display
+          - delay: 1s
+          - if:
+              condition:
+                switch.is_off: mute
+              then:
+                - lambda: id(voice_assistant_phase) = ${voice_assist_idle_phase_id};
+              else:
+                - lambda: id(voice_assistant_phase) = ${voice_assist_muted_phase_id};
+          - script.execute: draw_display
+  on_client_connected:
+    - lambda: id(init_in_progress) = false;
+    - script.execute: start_wake_word
+    - script.execute: set_idle_or_mute_phase
+    - script.execute: draw_display
+  on_client_disconnected:
+    - script.execute: stop_wake_word
+    - lambda: id(voice_assistant_phase) = ${voice_assist_not_ready_phase_id};
+    - script.execute: draw_display
+  on_timer_started:
+    - script.execute: draw_display
+  on_timer_cancelled:
+    - script.execute: draw_display
+  on_timer_updated:
+    - script.execute: draw_display
+  on_timer_tick:
+    - script.execute: draw_display
+  on_timer_finished:
+    - switch.turn_on: timer_ringing
+    - wait_until:
+        media_player.is_announcing:
+    - lambda: id(voice_assistant_phase) = ${voice_assist_timer_finished_phase_id};
+    - script.execute: draw_display
+
+sensor:
+  - platform: adc
+    pin: GPIO${battery_adc_pin}
+    id: battery_voltage
+    name: "Battery Voltage"
+    attenuation: 12db
+    accuracy_decimals: 2
+    update_interval: 60s      # was 1s
+    unit_of_measurement: "V"
+    icon: mdi:battery-medium
+    filters:
+      - multiply: 2.0
+      - median:                 # Change from sliding_window_moving_average
+          window_size: 3
+          send_every: 1
+          send_first_at: 1     
+    on_value:
+      then:
+        - component.update: battery_percentage
+      
+  - platform: template
+    id: battery_percentage
+    name: "Battery Percentage"
+    lambda: return id(battery_voltage).state;
+    accuracy_decimals: 0
+    unit_of_measurement: "%"
+    icon: mdi:battery-medium
+    filters:
+      - calibrate_linear:
+         method: exact
+         datapoints:
+          - 2.80 -> 0.0
+          - 3.10 -> 10.0
+          - 3.30 -> 20.0
+          - 3.45 -> 30.0
+          - 3.60 -> 40.0
+          - 3.70 -> 50.0
+          - 3.75 -> 60.0
+          - 3.80 -> 70.0
+          - 3.90 -> 80.0
+          - 4.00 -> 90.0
+          - 4.20 -> 100.0
+      - lambda: |-
+          if (x > 100) return 100;
+          if (x < 0) return 0;
+          return x;
+    on_value:
+      then:
+        - lambda: |-
+            int current = (int)x;
+            if (current != id(last_battery_percent)) {
+              id(last_battery_percent) = current;
+              id(draw_display).execute();
+            }
+
+globals:
+  # Core State
+  - id: init_in_progress
+    type: bool
+    restore_value: false
+    initial_value: "true"
+  - id: voice_assistant_phase
+    type: int
+    restore_value: false
+    initial_value: ${voice_assist_not_ready_phase_id}
+  - id: debug_mode
+    type: bool
+    initial_value: 'false'
+    
+  # Timers
+  - id: global_first_active_timer
+    type: voice_assistant::Timer
+    restore_value: false
+  - id: global_is_timer_active
+    type: bool
+    restore_value: false
+  - id: global_first_timer
+    type: voice_assistant::Timer
+    restore_value: false
+  - id: global_is_timer
+    type: bool
+    restore_value: false
+    
+  # Device State
+  - id: last_battery_percent
+    type: int
+    restore_value: no
+    initial_value: '-1'
+  - id: playing_internal_sound
+    type: bool
+    restore_value: no
+    initial_value: 'false'
+  - id: last_touch_time
+    type: unsigned long
+    initial_value: '0'
+  - id: is_tts_active
+    type: bool
+    initial_value: 'false' 
+  - id: speaker_busy_count
+    type: int
+    initial_value: '0'
+    
+  # Colors
+  - id: current_bg_color
+    type: Color
+    initial_value: 'Color::BLACK'   
+  - id: pupil_color_current
+    type: Color
+    initial_value: 'Color::BLACK'
+  - id: eye_color_current
+    type: Color
+    initial_value: 'Color::WHITE'
+    
+  # --- Animation Globals ---
+  
+  # Display State
+  - id: current_page
+    type: std::string
+    restore_value: no
+    initial_value: '"idle_page"'
+    # Page change full clear flag
+  - id: full_clear_requested
+    type: bool
+    initial_value: 'true'
+    # Dirty rects for eyes (previous frame)
+  - id: left_eye_prev_x
+    type: int
+    initial_value: '-1'
+  - id: left_eye_prev_y
+    type: int
+    initial_value: '-1'
+  - id: left_eye_prev_w
+    type: int
+    initial_value: '0'
+  - id: left_eye_prev_h
+    type: int
+    initial_value: '0'
+  - id: right_eye_prev_x
+    type: int
+    initial_value: '-1'
+  - id: right_eye_prev_y
+    type: int
+    initial_value: '-1'
+  - id: right_eye_prev_w
+    type: int
+    initial_value: '0'
+  - id: right_eye_prev_h
+    type: int
+    initial_value: '0'
+    
+  # Eye State
+  - id: pupil_radius_current # Pupil dilation
+    type: int
+    initial_value: ${pupil_radius_normal}
+  - id: pupil_radius_target
+    type: int
+    initial_value: ${pupil_radius_normal}
+  - id: last_pupil_pulse
+    type: unsigned long
+    initial_value: '0'
+  - id: eyeTarget
+    type: std::pair<int, int>
+    restore_value: no
+    initial_value: '{${screen_center_x}, ${screen_center_y}}'
+  - id: eye_offset_x
+    type: int
+    restore_value: no
+    initial_value: '0'
+  - id: eye_offset_y
+    type: int
+    restore_value: no
+    initial_value: '0'
+  - id: cross_eye_level
+    type: int
+    initial_value: ${cross_eye_amount}
+    
+  # Auto-Blink Engine
+  - id: blink_state      # 0=idle, 1=closing, 2=closed, 3=opening
+    type: int
+    initial_value: '0'
+  - id: blink_started_at
+    type: unsigned long
+    initial_value: '0'
+  - id: next_blink_at
+    type: unsigned long
+    initial_value: '0'
+  - id: blink_close_ms
+    type: int
+    initial_value: '90'
+  - id: blink_hold_ms
+    type: int
+    initial_value: '40'
+  - id: blink_open_ms
+    type: int
+    initial_value: '110'
+  - id: blink_wink_eye   # 0=both, 1=left, 2=right
+    type: int
+    initial_value: '0'
+  - id: blink_left
+    type: float
+    restore_value: no
+    initial_value: '1.0'
+  - id: blink_right
+    type: float
+    restore_value: no
+    initial_value: '1.0'
+  - id: manual_blink_target_left
+    type: float
+    initial_value: '1.0' # Start open
+  - id: manual_blink_target_right
+    type: float
+    initial_value: '1.0' # Start open
+
+  # Idle Animation Engine
+  - id: idle_motion_pattern
+    type: int
+    initial_value: '0'
+  - id: idle_motion_step
+    type: int
+    initial_value: '0'
+  - id: idle_motion_active
+    type: bool
+    restore_value: no
+    initial_value: 'false'
+  - id: last_idle_motion
+    type: unsigned long
+    restore_value: no
+    initial_value: '0'
+  - id: animation_step_time
+    type: unsigned long
+    initial_value: '0'
+  - id: last_interaction
+    type: unsigned long
+    restore_value: no
+    initial_value: '0'  
+
+  # Personality Quirk Engine / Animation state machines
+  - id: anim_state
+    type: int
+    initial_value: '0'
+  - id: anim_type
+    type: int
+    initial_value: '0'
+  - id: anim_started_at
+    type: unsigned long
+    initial_value: '0'
+  - id: anim_step_time
+    type: unsigned long
+    initial_value: '0'   
+  - id: anim_angle
+    type: float
+    initial_value: '0.0' 
+  - id: next_quirk_at
+    type: unsigned long
+    initial_value: '0'
+
+  # Thinking Dots Animation
+  - id: thinking_dot_position
+    type: int
+    initial_value: '0'
+  - id: last_dot_update
+    type: unsigned long
+    initial_value: '0'    
+
+
+# ----------------------------------------------------------------
+# 4. ANIMATION ENGINE & TRIGGERS
+# ----------------------------------------------------------------
+script:
+
+  # --- Core System & Drawing Scripts ---
+  - id: draw_display
+    then:
+      - if:
+          condition:
+            lambda: return !id(init_in_progress);
+          then:
+            - if:
+                condition:
+                  wifi.connected:
+                then:
+                  - if:
+                      condition:
+                        api.connected:
+                      then:
+                        - lambda: id(full_clear_requested) = true;
+                        - lambda: |
+                            switch(id(voice_assistant_phase)) {
+                              case ${voice_assist_listening_phase_id}:
+                                id(s3_box_lcd).show_page(listening_page);
+                                id(s3_box_lcd).update();
+                                break;
+                              case ${voice_assist_thinking_phase_id}:
+                                id(animation_start_thinking).execute();
+                                id(s3_box_lcd).show_page(thinking_page);
+                                id(s3_box_lcd).update();
+                                break;
+                              case ${voice_assist_replying_phase_id}:
+                                id(s3_box_lcd).show_page(replying_page);
+                                id(s3_box_lcd).update();
+                                break;
+                              case ${voice_assist_error_phase_id}:
+                                id(s3_box_lcd).show_page(error_page);
+                                id(s3_box_lcd).update();
+                                break;
+                              case ${voice_assist_muted_phase_id}:
+                                id(s3_box_lcd).show_page(muted_page);
+                                id(s3_box_lcd).update();
+                                break;
+                              case ${voice_assist_not_ready_phase_id}:
+                                id(s3_box_lcd).show_page(no_ha_page);
+                                id(s3_box_lcd).update();
+                                break;
+                              case ${voice_assist_timer_finished_phase_id}:
+                                id(s3_box_lcd).show_page(timer_finished_page);
+                                id(s3_box_lcd).update();
+                                break;
+                              default:
+                                id(last_interaction) = millis();
+                                id(s3_box_lcd).show_page(idle_page);
+                                id(s3_box_lcd).update();
+                            }
+                      else:
+                        - lambda: id(full_clear_requested) = true;
+                        - display.page.show: no_ha_page
+                        - component.update: s3_box_lcd
+                else:
+                  - lambda: id(full_clear_requested) = true;
+                  - display.page.show: no_wifi_page
+                  - component.update: s3_box_lcd
+          else:
+            - lambda: id(full_clear_requested) = true;
+            - display.page.show: initializing_page
+            - component.update: s3_box_lcd
+
+  - id: draw_eyes_and_ui
+    parameters:
+      background_color: esphome::Color
+      eye_radius: int
+      pupil_radius: int
+      pupil_color: esphome::Color
+      eye_color: esphome::Color
+    then:
+      - lambda: |-        
+          // Fixed eye white centers (do NOT apply eye_offset to whites)
+          const int cxL = ${screen_center_x} - ${eye_spacing} - 5;
+          const int cyL = id(s3_box_lcd).get_height() / 2;
+          const int cxR = ${screen_center_x} + ${eye_spacing} + 5;
+          const int cyR = id(s3_box_lcd).get_height() / 2;
+
+          // Full clear on page change
+          if (id(full_clear_requested)) {
+            id(s3_box_lcd).fill(background_color);
+          } else {
+            // Clear previous eye areas only (dirty rect) with bounds checking
+            if (id(left_eye_prev_w) > 0 && id(left_eye_prev_x) >= 0) {
+              int clear_x = std::max(0, id(left_eye_prev_x));
+              int clear_y = std::max(0, id(left_eye_prev_y));
+              int clear_w = std::min(id(left_eye_prev_w), id(s3_box_lcd).get_width() - clear_x);
+              int clear_h = std::min(id(left_eye_prev_h), id(s3_box_lcd).get_height() - clear_y);
+              if (clear_w > 0 && clear_h > 0) {
+                id(s3_box_lcd).filled_rectangle(clear_x, clear_y, clear_w, clear_h, background_color);
+              }
+            }
+            if (id(right_eye_prev_w) > 0 && id(right_eye_prev_x) >= 0) {
+              int clear_x = std::max(0, id(right_eye_prev_x));
+              int clear_y = std::max(0, id(right_eye_prev_y));
+              int clear_w = std::min(id(right_eye_prev_w), id(s3_box_lcd).get_width() - clear_x);
+              int clear_h = std::min(id(right_eye_prev_h), id(s3_box_lcd).get_height() - clear_y);
+              if (clear_w > 0 && clear_h > 0) {
+                id(s3_box_lcd).filled_rectangle(clear_x, clear_y, clear_w, clear_h, background_color);
+              }
+            }
+          }
+
+          // Time-based pupil pursuit (smooth, no jitter)
+          static uint32_t last_ts = 0;
+          const uint32_t now = millis();
+          if (last_ts == 0) last_ts = now;
+          float dt = (now - last_ts) / 1000.0f;
+          if (dt > 0.25f) dt = 0.25f;  // clamp if there was a pause
+          last_ts = now;
+
+          // Float pupil positions (reset on page change so both eyes start aligned)
+          static float lpx = cxL, lpy = cyL;
+          static float rpx = cxR, rpy = cyR;
+          
+          // Don't reset pupil positions on timer updates
+          static std::string last_page = "";
+          if (id(current_page) != last_page) {
+            last_page = id(current_page);
+            if (id(full_clear_requested)) {
+              lpx = cxL; lpy = cyL;
+              rpx = cxR; rpy = cyR;
+            }
+          }
+
+          auto eye_target = id(eyeTarget);
+          
+          // Each eye has its own target with inward bias
+          int left_target_x = eye_target.first - ${eye_spacing} + id(cross_eye_level);
+          int left_target_y = eye_target.second;
+          int right_target_x = eye_target.first + ${eye_spacing} - id(cross_eye_level);
+          int right_target_y = eye_target.second;
+          
+          // Move each eye independently toward its target
+          const float alpha = 0.40f;
+          
+          // Left eye
+          float left_dx = left_target_x - lpx;
+          float left_dy = left_target_y - lpy;
+          lpx += left_dx * alpha;
+          lpy += left_dy * alpha;
+          
+          // Right eye
+          float right_dx = right_target_x - rpx;
+          float right_dy = right_target_y - rpy;
+          rpx += right_dx * alpha;
+          rpy += right_dy * alpha;
+          
+          // Clamp pupils inside the eyeballs (float clamp, then cast to int)
+          auto clamp_to_eye_f = [&](int cx, int cy, float &px, float &py, float maxr) {
+            float dx = px - (float)cx, dy = py - (float)cy;
+            float r2 = dx*dx + dy*dy, maxr2 = maxr*maxr;
+            if (r2 > maxr2) {
+              float r = sqrtf(r2);
+              if (r > 0.0f) {
+                px = (float)cx + dx * (maxr / r);
+                py = (float)cy + dy * (maxr / r);
+              }
+            }
+          };
+
+          float maxrL = (float)eye_radius - (float)pupil_radius - 2.0f;
+          float maxrR = (float)eye_radius - (float)pupil_radius - 2.0f;
+          clamp_to_eye_f(cxL, cyL, lpx, lpy, maxrL);
+          clamp_to_eye_f(cxR, cyR, rpx, rpy, maxrR);
+
+          int left_pupil_x  = (int)roundf(lpx);
+          int left_pupil_y  = (int)roundf(lpy);
+          int right_pupil_x = (int)roundf(rpx);
+          int right_pupil_y = (int)roundf(rpy);
+
+          // Draw an eye with rectangular eyelids
+          auto draw_eye = [&](int cx, int cy, int px, int py, float blink, int e_radius, int p_radius, Color p_color, Color e_color) {
+            if (blink <= 0.0f) {
+              // Fully closed: just draw background circle
+              id(s3_box_lcd).filled_circle(cx, cy, e_radius, background_color);
+              return;
+            }
+
+            // Draw eye with custom color
+            id(s3_box_lcd).filled_circle(cx, cy, e_radius, e_color);
+            
+            // Draw pupil
+            id(s3_box_lcd).filled_circle(px, py, p_radius, p_color);
+            
+            // Draw highlight
+            int hl_r = p_radius / 4; 
+            if (hl_r < 2) hl_r = 2;
+            id(s3_box_lcd).filled_circle(px - p_radius / 3, py - p_radius / 3, hl_r, Color::WHITE);
+
+            // Draw eyelids if partially closed (rectangular style like v1)
+            if (blink < 1.0f) {
+              int blink_px = (int)(e_radius * (1.0f - blink));
+              if (blink_px > 0) {
+                // Top eyelid
+                id(s3_box_lcd).filled_rectangle(cx - e_radius, cy - e_radius, e_radius * 2, blink_px + 3, background_color);
+                // Bottom eyelid
+                id(s3_box_lcd).filled_rectangle(cx - e_radius, cy + e_radius - blink_px - 2, e_radius * 2, blink_px + 3, background_color);
+              }
+            }
+          };
+
+          // Draw both eyes
+          draw_eye(cxL, cyL, left_pupil_x,  left_pupil_y,  id(blink_left),  eye_radius, pupil_radius, pupil_color, eye_color);
+          draw_eye(cxR, cyR, right_pupil_x, right_pupil_y, id(blink_right), eye_radius, pupil_radius, pupil_color, eye_color);
+
+          // Save dirty rects (bounds + small margin)
+          const int m = 4;
+          id(left_eye_prev_x) = cxL - eye_radius - m;
+          id(left_eye_prev_y) = cyL - eye_radius - m;
+          id(left_eye_prev_w) = (eye_radius + m) * 2;
+          id(left_eye_prev_h) = (eye_radius + m) * 2;
+
+          id(right_eye_prev_x) = cxR - eye_radius - m;
+          id(right_eye_prev_y) = cyR - eye_radius - m;
+          id(right_eye_prev_w) = (eye_radius + m) * 2;
+          id(right_eye_prev_h) = (eye_radius + m) * 2;
+
+          id(full_clear_requested) = false;
+ 
+  - id: eyes_engine_tick
+    then:
+      - lambda: |-
+          static unsigned long last_eye_update = 0;
+          const uint32_t now = millis();
+          
+          // Throttle eye updates to 20fps max (50ms between updates)
+          if (now - last_eye_update < 50) return;
+          last_eye_update = now;
+
+          // If page just changed, reset dirty rects so we force a full draw once
+          if (id(full_clear_requested)) {
+            id(left_eye_prev_x) = id(right_eye_prev_x) = -1;
+            id(left_eye_prev_w) = id(right_eye_prev_w) = 0;
+          }
+
+          // Blink engine (disabled in manual eyelid mode)
+          if ( (!id(manual_eyelid_switch).state && !id(left_eye_switch).state && !id(right_eye_switch).state) || id(blink_state) != 0 ) {
+            // Default "open" unless overridden by active blink
+            float open = 1.0f;
+
+            // Schedule a new random blink if idle
+            if (id(blink_state) == 0 && !id(manual_eyelid_switch).state) {
+              if (id(next_blink_at) == 0) {
+                // Schedule next blink
+                id(next_blink_at) = now + 2500 + (random_uint32() % 4500);
+              } else if (now >= id(next_blink_at)) {
+                // Time to blink - sometimes do a double blink
+                if ((random_uint32() % 100) < 20) {  // 20% chance of double blink
+                  id(blink_state) = 1;
+                  id(blink_started_at) = now;
+                  id(blink_close_ms) = 60;  // Faster for double blink
+                  id(blink_hold_ms)  = 15;
+                  id(blink_open_ms)  = 70;
+                  id(blink_wink_eye) = 0;
+                  // Schedule second blink
+                  id(next_blink_at) = now + 200;  // Second blink after 200ms
+                } else {
+                  // Normal blink
+                  id(blink_state) = 1;
+                  id(blink_started_at) = now;
+                  id(blink_close_ms) = 80 + (random_uint32() % 30);
+                  id(blink_hold_ms)  = 20 + (random_uint32() % 40);
+                  id(blink_open_ms)  = 100 + (random_uint32() % 40);
+                  id(blink_wink_eye) = 0;
+                  id(next_blink_at) = 0;
+                }
+              }
+            }
+
+            const int prev_state = id(blink_state);
+
+            // State machine
+            if (id(blink_state) == 1) {            // closing
+              float t = float(now - id(blink_started_at)) / float(id(blink_close_ms));
+              if (t >= 1.0f) { t = 1.0f; id(blink_state) = 2; id(blink_started_at) = now; }
+              open = 1.0f - (t * t * t); // ease-in cubic
+            } else if (id(blink_state) == 2) {     // closed hold
+              open = 0.0f;
+              if (now - id(blink_started_at) >= (uint32_t)id(blink_hold_ms)) {
+                id(blink_state) = 3; id(blink_started_at) = now;
+              }
+            } else if (id(blink_state) == 3) {     // opening
+              float t = float(now - id(blink_started_at)) / float(id(blink_open_ms));
+              if (t >= 1.0f) { t = 1.0f; id(blink_state) = 0; id(next_blink_at) = now + 2500 + (random_uint32() % 4500); }
+              open = (1.0f - powf(1.0f - t, 3.0f)); // ease-out cubic
+            } else {
+              open = 1.0f;
+            }
+            
+            // Ensure we always write the final state
+            if (id(blink_state) == 0 && id(blink_wink_eye) == 0) {
+              // When idle and not winking, ensure eyes are fully open
+              if (id(blink_left) < 1.0f || id(blink_right) < 1.0f) {
+                id(blink_left) = 1.0f;
+                id(blink_right) = 1.0f;
+              }
+            }
+
+            // Always write eyelid openness on each frame (prevents "stuck half-open")
+            if (id(blink_wink_eye) == 1) {
+              id(blink_left) = open;
+            } else if (id(blink_wink_eye) == 2) {
+              id(blink_right) = open;
+            } else {
+              id(blink_left) = open;
+              id(blink_right) = open;
+            }
+
+            // Safety- if something goes wrong, force recover after 800ms
+            if (prev_state != 0 && id(blink_state) == 0) {
+              id(blink_left) = 1.0f;
+              id(blink_right) = 1.0f;
+            }
+            if (id(blink_state) != 0 && (now - id(blink_started_at) > 800)) {
+              id(blink_state) = 0;
+              id(blink_left) = 1.0f;
+              id(blink_right) = 1.0f;
+              id(next_blink_at) = now + 2000;
+            }
+          }
+          
+          // Manual eyelid animation for Left/Right Eye switches.
+          // IMPORTANT: Only run this logic when the sliders are NOT in control.
+          if (!id(manual_eyelid_switch).state) {
+            const float LERP_SPEED = 0.35f;
+
+            // Animate Left Eye towards its target
+            float diff_left = id(manual_blink_target_left) - id(blink_left);
+            if (abs(diff_left) > 0.01f) {
+              id(blink_left) += diff_left * LERP_SPEED;
+            } else {
+              id(blink_left) = id(manual_blink_target_left);
+            }
+
+            // Animate Right Eye towards its target
+            float diff_right = id(manual_blink_target_right) - id(blink_right);
+            if (abs(diff_right) > 0.01f) {
+              id(blink_right) += diff_right * LERP_SPEED;
+            } else {
+              id(blink_right) = id(manual_blink_target_right);
+            }
+          }
+
+          // Smooth pupil dilation toward target (unchanged)
+          if (id(pupil_radius_current) != id(pupil_radius_target)) {
+            int d = id(pupil_radius_target) - id(pupil_radius_current);
+            if (abs(d) <= 1) id(pupil_radius_current) = id(pupil_radius_target);
+            else id(pupil_radius_current) += d / 2; // How fast the pupil size changes - 3 is slower
+          }
+          
+          // Non-blocking animation state machine
+          if (id(anim_state) > 0) {
+            const unsigned long anim_now = millis();
+            
+            switch(id(anim_type)) {
+              case 1: // Peek animation
+                if (id(anim_state) == 1) {
+                  id(blink_left) = 0.0;
+                  id(blink_right) = 0.0;
+                  id(anim_state) = 2;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 2 && (anim_now - id(anim_step_time)) > 500) {
+                  id(blink_right) = 0.3;
+                  id(anim_state) = 3;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 3 && (anim_now - id(anim_step_time)) > 300) {
+                  id(blink_left) = 0.5;
+                  id(blink_right) = 0.5;
+                  id(anim_state) = 4;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 4 && (anim_now - id(anim_step_time)) > 200) {
+                  id(blink_left) = 1.0;
+                  id(blink_right) = 1.0;
+                  id(anim_state) = 0;
+                }
+                break;
+                
+              case 2: // Excited bounce
+                if (id(anim_state) == 1) {
+                  id(pupil_radius_target) = ${pupil_radius_big};
+                  id(eye_offset_y) = -10;
+                  id(anim_state) = 2;
+                  id(anim_step_time) = anim_now;
+                } else if ((anim_now - id(anim_step_time)) > 150) {
+                  if (id(anim_state) % 2 == 0) {
+                    id(eye_offset_y) = 10;
+                  } else {
+                    id(eye_offset_y) = -10;
+                  }
+                  id(anim_state)++;
+                  id(anim_step_time) = anim_now;
+                  if (id(anim_state) > 7) {
+                    id(eye_offset_y) = 0;
+                    id(pupil_radius_target) = ${pupil_radius_normal};
+                    id(anim_state) = 0;
+                  }
+                }
+                break;
+                
+              case 3: // Eyeroll
+                if (id(anim_state) == 1) {
+                  id(eye_offset_y) = -25;
+                  id(anim_state) = 2;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 2 && (anim_now - id(anim_step_time)) > 300) {
+                  id(eye_offset_y) = 0;
+                  id(anim_state) = 0;
+                }
+                break;
+                
+              case 4: // Side glance
+                if (id(anim_state) == 1) {
+                  id(eye_offset_x) = 30;
+                  id(anim_state) = 2;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 2 && (anim_now - id(anim_step_time)) > 500) {
+                  id(eye_offset_x) = -30;
+                  id(anim_state) = 3;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 3 && (anim_now - id(anim_step_time)) > 500) {
+                  id(eye_offset_x) = 0;
+                  id(anim_state) = 0;
+                }
+                break;
+                
+              case 5: // Happy dance (Vector-style)
+                if (id(anim_state) == 1) {
+                  id(pupil_radius_target) = ${pupil_radius_big};
+                  id(blink_left) = 0.8;  // Happy squint
+                  id(blink_right) = 0.8;
+                  id(anim_state) = 2;
+                  id(anim_step_time) = anim_now;
+                } else if ((anim_now - id(anim_step_time)) > 100) {
+                  int wiggle_step = (id(anim_state) - 2) % 4;
+                  switch(wiggle_step) {
+                    case 0: id(eye_offset_x) = -15; break;
+                    case 1: id(eye_offset_x) = 15; break;
+                    case 2: id(eye_offset_x) = -15; break;
+                    case 3: id(eye_offset_x) = 0; break;
+                  }
+                  id(anim_state)++;
+                  id(anim_step_time) = anim_now;
+                  if (id(anim_state) > 10) {
+                    id(eye_offset_x) = 0;
+                    id(blink_left) = 1.0;
+                    id(blink_right) = 1.0;
+                    id(pupil_radius_target) = ${pupil_radius_normal};
+                    id(anim_state) = 0;
+                  }
+                }
+                break;
+                
+              case 6: // Surprised pop (Emo-style)
+                if (id(anim_state) == 1) {
+                  id(pupil_radius_target) = ${pupil_radius_small};
+                  id(anim_state) = 2;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 2 && (anim_now - id(anim_step_time)) > 100) {
+                  id(pupil_radius_target) = ${pupil_radius_big} + 5;
+                  id(eye_offset_y) = -5;
+                  id(anim_state) = 3;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 3 && (anim_now - id(anim_step_time)) > 300) {
+                  id(pupil_radius_target) = ${pupil_radius_normal};
+                  id(eye_offset_y) = 0;
+                  id(anim_state) = 0;
+                }
+                break;
+                
+              case 7: // Dizzy swirl
+                if ((anim_now - id(anim_step_time)) > 50) {
+                  id(anim_angle) += 0.4;
+                  if (id(anim_angle) > 6.28) {  // Full circle
+                    id(eye_offset_x) = 0;
+                    id(eye_offset_y) = 0;
+                    id(anim_state) = 0;
+                    id(anim_angle) = 0;
+                  } else {
+                    id(eye_offset_x) = 20 * cos(id(anim_angle));
+                    id(eye_offset_y) = 20 * sin(id(anim_angle));
+                    id(anim_step_time) = anim_now;
+                  }
+                }
+                break;
+                
+              case 8: // Confused Look
+                if (id(anim_state) == 1) { // Start: squint and look left
+                  id(blink_left) = 0.7;
+                  id(eye_offset_x) = -15;
+                  id(eye_offset_y) = -10;
+                  id(anim_state) = 2;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 2 && (anim_now - id(anim_step_time)) > 1500) { // Hold, then look right
+                  id(eye_offset_x) = 15;
+                  id(anim_state) = 3;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 3 && (anim_now - id(anim_step_time)) > 1500) { // Hold, then finish
+                  id(blink_left) = 1.0;
+                  id(eye_offset_x) = 0;
+                  id(eye_offset_y) = 0;
+                  id(anim_state) = 0; // Animation finished
+                }
+                break;
+
+              case 9: // Double Take
+                if (id(anim_state) == 1) { // Glance right
+                  id(eye_offset_x) = 20;
+                  id(pupil_radius_target) = ${pupil_radius_big};
+                  id(anim_state) = 2;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 2 && (anim_now - id(anim_step_time)) > 200) { // Look away
+                  id(eye_offset_x) = 0;
+                  id(anim_state) = 3;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 3 && (anim_now - id(anim_step_time)) > 100) { // Look back!
+                  id(eye_offset_x) = 20;
+                  id(anim_state) = 4;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 4 && (anim_now - id(anim_step_time)) > 300) { // Finish
+                  id(eye_offset_x) = 0;
+                  id(pupil_radius_target) = ${pupil_radius_normal};
+                  id(anim_state) = 0;
+                }
+                break;
+
+              case 10: // Sleepy Eyes
+                if (id(anim_state) == 1) { // Droop eyes
+                  id(blink_left) = 0.5;
+                  id(blink_right) = 0.5;
+                  id(anim_state) = 2;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 2 && (anim_now - id(anim_step_time)) > 2000) { // Droop more
+                  id(blink_left) = 0.3;
+                  id(blink_right) = 0.4;
+                  id(anim_state) = 3;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 3 && (anim_now - id(anim_step_time)) > 1000) { // Finish (wake up)
+                  id(blink_left) = 1.0;
+                  id(blink_right) = 1.0;
+                  id(anim_state) = 0;
+                }
+                break;
+
+              case 11: // Go Cross Eyed
+                if (id(anim_state) == 1) {
+                  id(cross_eye_level) = 15;
+                  id(anim_state) = 2;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 2 && (anim_now - id(anim_step_time)) > 200) {
+                  id(cross_eye_level) = 25;
+                  id(anim_state) = 3;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 3 && (anim_now - id(anim_step_time)) > 800) { // Hold for a bit
+                  id(cross_eye_level) = ${cross_eye_amount}; // Reset
+                  id(anim_state) = 0;
+                }
+                break;
+                
+              case 12: // Curious Tilt
+                if (id(anim_state) == 1) { // Start: Tilt up
+                  id(eye_offset_y) = -10;
+                  id(anim_state) = 2;
+                  id(anim_step_time) = anim_now;
+                } else if (id(anim_state) == 2 && (anim_now - id(anim_step_time)) > 2000) { // Hold for 2s, then finish
+                  id(eye_offset_y) = 0; // Reset
+                  id(anim_state) = 0;   // Animation finished
+                }
+                break;                
+            }
+          }
+          
+          // Force recover if a blink ever runs too long
+          if (id(blink_state) != 0 && (millis() - id(blink_started_at) > 800)) {
+            id(blink_state) = 0;
+            id(blink_left) = 1.0f;
+            id(blink_right) = 1.0f;
+            id(next_blink_at) = millis() + 2000;
+          } 
+             
+  - id: reset_eye_position
+    then:
+      - lambda: |-
+          // Stop any active animation immediately
+          id(idle_motion_active) = false;
+          
+          // Reset eye offsets to center the view
+          id(eye_offset_x) = 0;
+          id(eye_offset_y) = 0;
+          
+          // Update the interaction timer to prevent a new idle animation from starting right away
+          id(last_interaction) = millis();
+          
+          // Reset idle motion timer to allow new animations
+          id(last_idle_motion) = millis() - 10000;  // Allow animations to start sooner
+      - script.execute: update_eye_target
+
+  - id: update_eye_target
+    mode: restart
+    then:
+      - lambda: |-
+          id(eyeTarget) = { ${screen_center_x} + id(eye_offset_x), ${screen_center_y} + id(eye_offset_y) };
+
+  - id: draw_timer_timeline
+    then:
+      - lambda: |-
+          id(check_if_timers_active).execute();
+          id(check_if_timers).execute();
+          const int W = id(s3_box_lcd).get_width();
+          const int bar_y = id(s3_box_lcd).get_height() - 15;
+
+          // Always clear the band first
+          id(s3_box_lcd).filled_rectangle(0, bar_y, W, 15, id(current_bg_color));
+
+          if (id(global_is_timer_active)) {
+            id(fetch_first_active_timer).execute();
+            int denom = std::max<int>(id(global_first_active_timer).total_seconds, 1);
+            int active_pixels = round(float(W) * float(id(global_first_active_timer).seconds_left) / float(denom));
+            if (active_pixels > 0) {
+              id(s3_box_lcd).filled_rectangle(0, bar_y, W, 15, Color::WHITE);
+              id(s3_box_lcd).filled_rectangle(0, bar_y+1, active_pixels, 13, id(active_timer_color));
+            }
+          } else if (id(global_is_timer)) {
+            id(fetch_first_timer).execute();
+            int denom = std::max<int>(id(global_first_timer).total_seconds, 1);
+            int active_pixels = round(float(W) * float(id(global_first_timer).seconds_left) / float(denom));
+            if (active_pixels > 0) {
+              id(s3_box_lcd).filled_rectangle(0, bar_y, W, 15, Color::WHITE);
+              id(s3_box_lcd).filled_rectangle(0, bar_y+1, active_pixels, 13, id(paused_timer_color));
+            }
+          }
+          
+  - id: draw_active_timer_widget
+    then:
+      - lambda: |
+          const int bw = 160, bh = 30;
+          const int bx = (id(s3_box_lcd).get_width() - bw) / 2;  // This centers it: (240-160)/2 = 40
+          const int by = 10;
+          id(check_if_timers_active).execute();
+
+          // Clear region every frame to avoid stale text/box
+          id(s3_box_lcd).filled_rectangle(bx, by, bw, bh, id(current_bg_color));
+
+          if (id(global_is_timer_active)){
+            id(s3_box_lcd).filled_rectangle(bx, by, bw, bh, Color::WHITE );
+            id(s3_box_lcd).rectangle(bx, by, bw, bh, Color::BLACK );
+
+            id(fetch_first_active_timer).execute();
+            int hours_left = floor(id(global_first_active_timer).seconds_left / 3600);
+            int minutes_left = floor((id(global_first_active_timer).seconds_left - hours_left * 3600) / 60);
+            int seconds_left = id(global_first_active_timer).seconds_left - hours_left * 3600 - minutes_left * 60 ;
+            auto dh = (hours_left < 10 ? "0" : "") + std::to_string(hours_left);
+            auto dm = (minutes_left < 10 ? "0" : "") + std::to_string(minutes_left);
+            auto ds = (seconds_left  < 10 ? "0" : "") + std::to_string(seconds_left) ;
+            std::string out = hours_left > 0 ? (dh + ":" + dm) : (dm + ":" + ds);
+            
+            id(s3_box_lcd).printf(bx + (bw / 2), by + (bh / 2), id(font_timer), Color::BLACK, TextAlign::CENTER, "%s", out.c_str());
+          }
+          
+  # --- Voice Assistant Helper Scripts ---
+  - id: start_wake_word
+    mode: single
+    then:
+      - lambda: |-
+          ESP_LOGD("wake_word", "start_wake_word called, TTS lock: %s", 
+                   id(is_tts_active) ? "locked" : "unlocked");
+      
+      # Check both the lock AND speaker state
+      - if:
+          condition:
+            or:
+              - lambda: 'return id(is_tts_active);'
+              - speaker.is_playing:
+                  id: i2s_audio_speaker
+          then:
+            - lambda: |-
+                id(speaker_busy_count)++;
+                if (id(speaker_busy_count) > 10) {
+                  ESP_LOGW("wake_word", "Speaker busy for too long, forcing unlock");
+                  id(is_tts_active) = false;
+                  id(speaker_busy_count) = 0;
+                } else {
+                  ESP_LOGD("wake_word", "Speaker busy, will retry (attempt %d/10)", id(speaker_busy_count));
+                }
+            - delay: 1s
+            - script.execute: start_wake_word  # Retry
+          else:  
+      
+            - lambda: 'id(speaker_busy_count) = 0;'  # Reset counter on success
+            
+            # Rest of the existing logic (keep everything below this as it was)
+            - if:
+                condition:
+                  and:
+                    - lambda: return id(wake_word_engine_location).state == "On device";
+                    - micro_wake_word.is_running:
+                then:
+                  - logger.log:
+                      level: DEBUG
+                      format: "Wake word already running, skipping start"
+                else:
+                  # Wait for the speaker to be truly idle before proceeding
+                  - wait_until:
+                      condition:
+                        and:
+                          - not:
+                              media_player.is_announcing:
+                          - not:
+                              speaker.is_playing:
+                                id: i2s_audio_speaker
+                      timeout: 2s
+                  # Logic for On-Device Wake Word
+                  - if:
+                      condition:
+                        and:
+                          - not:
+                              voice_assistant.is_running:
+                          - lambda: return id(wake_word_engine_location).state == "On device";
+                      then:
+                        - if:
+                            condition:
+                              not:
+                                microphone.is_capturing:
+                            then:
+                              - lambda: id(va).set_use_wake_word(false);
+                              - micro_wake_word.start:
+                            else:
+                              - delay: 500ms
+                              - if:
+                                  condition:
+                                    not:
+                                      microphone.is_capturing:
+                                  then:
+                                    - lambda: id(va).set_use_wake_word(false);
+                                    - micro_wake_word.start:
+                  # Logic for HA-side Wake Word
+                  - if:
+                      condition:
+                        and:
+                          - not:
+                              voice_assistant.is_running:
+                          - lambda: return id(wake_word_engine_location).state == "In Home Assistant";
+                      then:
+                        - lambda: id(va).set_use_wake_word(true);
+                        - voice_assistant.start_continuous:
+           
+  - id: stop_wake_word
+    then:
+      - if:
+          condition:
+            lambda: return id(wake_word_engine_location).state == "In Home Assistant";
+          then:
+            - lambda: id(va).set_use_wake_word(false);
+            - voice_assistant.stop:
+      - if:
+          condition:
+            lambda: return id(wake_word_engine_location).state == "On device";
+          then:
+            - micro_wake_word.stop:
+            
+  - id: set_idle_or_mute_phase
+    then:
+      - if:
+          condition:
+            switch.is_off: mute
+          then:
+            - lambda: id(voice_assistant_phase) = ${voice_assist_idle_phase_id};
+          else:
+            - lambda: id(voice_assistant_phase) = ${voice_assist_muted_phase_id};
+
+    # Script executed when we want to play sounds on the device.
+  - id: play_sound
+    parameters:
+      priority: bool
+      sound_file: "audio::AudioFile*"
+    then:
+      - lambda: |-
+          id(playing_internal_sound) = true;
+          if (priority) {
+            id(external_media_player)
+              ->make_call()
+              .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_STOP)
+              .set_announcement(true)
+              .perform();
+          }
+          if ( (id(external_media_player).state != media_player::MediaPlayerState::MEDIA_PLAYER_STATE_ANNOUNCING ) || priority) {
+            id(external_media_player)
+              ->play_file(sound_file, true, false);
+          }          
+
+  - id: animation_start_thinking
+    then:
+      - lambda: |-
+          // Activate the animation engine and tell it to use pattern 6
+          id(idle_motion_active) = true;
+          id(last_idle_motion) = millis(); // Update timer to prevent idle animations from conflicting
+          id(animation_step_time) = millis();
+          id(idle_motion_step) = 0;
+          id(idle_motion_pattern) = 6; // Use pattern 6
+
+          // Set the "thinking" eye position
+          id(eye_offset_x) = -20;
+          id(eye_offset_y) = -20;
+  
+  - id: fetch_first_active_timer
+    then:
+      - lambda: |
+          const auto timers = id(va).get_timers();
+          auto output_timer = timers.begin()->second;
+          for (auto &iterable_timer : timers) {
+            if (iterable_timer.second.is_active && iterable_timer.second.seconds_left <= output_timer.seconds_left) {
+              output_timer = iterable_timer.second;
+            }
+          }
+          id(global_first_active_timer) = output_timer;
+          
+  - id: check_if_timers_active
+    then:
+      - lambda: |
+          const auto timers = id(va).get_timers();
+          bool output = false;
+          if (timers.size() > 0) {
+            for (auto &iterable_timer : timers) {
+              if(iterable_timer.second.is_active) {
+                output = true;
+              }
+            }
+          }
+          id(global_is_timer_active) = output;
+          
+  - id: fetch_first_timer
+    then:
+      - lambda: |
+          const auto timers = id(va).get_timers();
+          auto output_timer = timers.begin()->second;
+          for (auto &iterable_timer : timers) {
+            if (iterable_timer.second.seconds_left <= output_timer.seconds_left) {
+              output_timer = iterable_timer.second;
+            }
+          }
+          id(global_first_timer) = output_timer;
+          
+  - id: check_if_timers
+    then:
+      - lambda: |
+          const auto timers = id(va).get_timers();
+          bool output = false;
+          if (timers.size() > 0) {
+            output = true;
+          }
+          id(global_is_timer) = output;
+
+  # --- Animation Trigger Scripts ---
+  - id: random_personality_quirk
+    mode: restart
+    then:
+      - lambda: |-
+          // Schedule next quirk (non-blocking)
+          id(next_quirk_at) = millis() + 20000 + (random_uint32() % 20000);
+
+  - id: smooth_blink
+    mode: restart
+    then:
+      - lambda: |-
+          id(blink_close_ms) = 120; id(blink_hold_ms) = 40; id(blink_open_ms) = 160;
+          id(blink_wink_eye) = 0; // both
+          id(blink_state) = 1; id(blink_started_at) = millis();
+          
+  - id: fast_blink
+    mode: restart
+    then:
+      - lambda: |-
+          id(blink_close_ms) = 70; id(blink_hold_ms) = 20; id(blink_open_ms) = 90;
+          id(blink_wink_eye) = 0; // both
+          id(blink_state) = 1; id(blink_started_at) = millis();
+
+  - id: double_blink
+    then:
+      - lambda: |-
+          // Just trigger two quick blinks
+          id(blink_state) = 1;
+          id(blink_started_at) = millis();
+          id(blink_close_ms) = 60;
+          id(blink_hold_ms) = 10;
+          id(blink_open_ms) = 60;
+          id(next_blink_at) = millis() + 150; // Schedule second blink
+
+  - id: trigger_peek
+    then:
+      - lambda: |-
+          id(anim_type) = 1;
+          id(anim_state) = 1;
+          id(anim_started_at) = millis();
+          
+  - id: trigger_bounce
+    then:
+      - lambda: |-
+          id(anim_type) = 2;
+          id(anim_state) = 1;
+          id(anim_started_at) = millis();
+
+  - id: eyeroll_animation
+    then:
+      - lambda: |-
+          id(anim_type) = 3;  // New animation type
+          id(anim_state) = 1;
+          id(anim_started_at) = millis();
+
+  - id: side_glance
+    then:
+      - lambda: |-
+          id(anim_type) = 4;  // New animation type
+          id(anim_state) = 1;
+          id(anim_started_at) = millis();
+
+  - id: happy_dance
+    mode: restart
+    then:
+      - lambda: |-
+          id(anim_type) = 5;  // New animation type
+          id(anim_state) = 1;
+          id(anim_started_at) = millis();
+          
+  - id: surprised_pop
+    mode: restart  
+    then:
+      - lambda: |-
+          id(anim_type) = 6;  // New animation type
+          id(anim_state) = 1;
+          id(anim_started_at) = millis();
+          
+  - id: dizzy_swirl
+    mode: restart
+    then:
+      - lambda: |-
+          id(anim_type) = 7;  // New animation type
+          id(anim_state) = 1;
+          id(anim_started_at) = millis();
+          id(anim_angle) = 0.0;
+
+  - id: confused_look
+    mode: restart
+    then:
+      - lambda: |-
+          id(anim_type) = 8;
+          id(anim_state) = 1;
+
+  - id: double_take
+    mode: restart
+    then:
+      - lambda: |-
+          id(anim_type) = 9;
+          id(anim_state) = 1;
+
+  - id: sleepy_eyes
+    mode: restart
+    then:
+      - lambda: |-
+          id(anim_type) = 10;
+          id(anim_state) = 1;
+
+  - id: go_cross_eyed
+    mode: restart
+    then:
+      - lambda: |-
+          id(anim_type) = 11;
+          id(anim_state) = 1;
+
+  - id: curious_tilt
+    mode: restart
+    then:
+      - lambda: |-
+          id(anim_type) = 12;
+          id(anim_state) = 1;
+
+
+# ----------------------------------------------------------------
+# 5. UI & DISPLAY (Switches, Sliders, Colors, Fonts, Display Pages)
+# ----------------------------------------------------------------
+switch:
+
+  # System Switches
+  - platform: template
+    name: Mute
+    id: mute
+    icon: "mdi:microphone-off"
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+    entity_category: config
+    on_turn_off:
+      - microphone.unmute:
+      - lambda: id(voice_assistant_phase) = ${voice_assist_idle_phase_id};
+      - script.execute: draw_display
+    on_turn_on:
+      - microphone.mute:
+      - lambda: id(voice_assistant_phase) = ${voice_assist_muted_phase_id};
+      - script.execute: draw_display
+  - platform: template
+    id: timer_ringing
+    optimistic: true
+    internal: true
+    restore_mode: ALWAYS_OFF
+    on_turn_off:
+      - lambda: |-
+              id(external_media_player)
+                ->make_call()
+                .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_REPEAT_OFF)
+                .set_announcement(true)
+                .perform();
+              id(external_media_player)->set_playlist_delay_ms(speaker::AudioPipelineType::ANNOUNCEMENT, 0);
+      - media_player.stop:
+          announcement: true
+    on_turn_on:
+      - lambda: |-
+            id(external_media_player)
+              ->make_call()
+              .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_REPEAT_ONE)
+              .set_announcement(true)
+              .perform();
+            id(external_media_player)->set_playlist_delay_ms(speaker::AudioPipelineType::ANNOUNCEMENT, 1000);
+      - media_player.speaker.play_on_device_media_file:
+          media_file: timer_finished_sound
+          announcement: true
+      - delay: 15min
+      - switch.turn_off: timer_ringing
+
+  - platform: template
+    id: wake_sound
+    name: Wake sound
+    icon: "mdi:bullhorn"
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+
+  - platform: template
+    id: startup_sound_switch
+    name: Startup sound
+    icon: "mdi:card-text-outline"
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+
+  - platform: gpio
+    name: Speaker Enable
+    icon: "mdi:speaker"
+    entity_category: config
+    pin: GPIO${speaker_enable_pin}
+    restore_mode: RESTORE_DEFAULT_ON
+
+  # UI Switches      
+  - platform: template
+    id: show_text
+    name: Show Text
+    icon: "mdi:card-text-outline"
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+
+  - platform: template
+    id: show_battery_status
+    name: Show Battery Status
+    icon: "mdi:card-text-outline"
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+    on_turn_on:
+      - script.execute: draw_display
+    on_turn_off:
+      - script.execute: draw_display
+
+  - platform: template
+    id: touch_to_wake_switch
+    name: "Touch to Wake"
+    icon: "mdi:gesture-tap-button"
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON # Keep it enabled by default
+
+  # Manual Control Switches  
+  - platform: template
+    id: manual_eye_control
+    name: "Manual Eye Control"
+    icon: "mdi:eye-settings"
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on:
+      - lambda: |-
+          // --- STOP ALL ANIMATION ENGINES ---
+          id(idle_motion_active) = false; // Stop idle look-around
+          id(anim_state) = 0;           // Stop personality quirks (peek, bounce, etc.)
+          id(blink_state) = 0;          // Stop any in-progress blink
+          id(next_blink_at) = 0;        // Prevent the next scheduled auto-blink
+
+          // --- RESET EYES TO A NEUTRAL STATE ---
+          id(eye_offset_x) = 0;
+          id(eye_offset_y) = 0;
+          id(blink_left) = 1.0;
+          id(blink_right) = 1.0;
+          id(pupil_radius_target) = ${pupil_radius_normal};
+    on_turn_off:
+      - lambda: |-
+          // --- ALLOW ANIMATIONS TO RESUME NATURALLY ---
+          // Make the device think it has been idle for a while so animations can start soon.
+          id(last_interaction) = millis() - 10000;
+          id(last_idle_motion) = millis();
+          id(next_blink_at) = millis() + 1500; // Schedule the next blink fairly soon.
+
+  - platform: template
+    id: manual_eyelid_switch
+    name: "Manual Eyelid Control"
+    icon: "mdi:hand-front-right"
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on:
+      - lambda: |-
+          // Stop all blinking and animations
+          id(blink_state) = 0;
+          id(next_blink_at) = 0;
+          id(idle_motion_active) = false;
+          id(anim_state) = 0;
+          // Keep current eye positions
+    on_turn_off:
+      - lambda: |-
+          // Reset to open and allow auto-blink to resume
+          id(blink_left) = 1.0f;
+          id(blink_right) = 1.0f;
+          id(next_blink_at) = millis() + 1500;
+          id(idle_motion_active) = false;
+
+  - platform: template
+    name: "Left Eye"
+    id: left_eye_switch # Add an ID
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on:
+      # Tell the engine what to do: close the left eye
+      - lambda: id(manual_blink_target_left) = 0.0;
+    on_turn_off:
+      # Tell the engine what to do: open the left eye
+      - lambda: id(manual_blink_target_left) = 1.0;
+
+  - platform: template
+    name: "Right Eye"
+    id: right_eye_switch # Add an ID
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on:
+      # Tell the engine what to do: close the right eye
+      - lambda: id(manual_blink_target_right) = 0.0;
+    on_turn_off:
+      # Tell the engine what to do: open the right eye
+      - lambda: id(manual_blink_target_right) = 1.0;
+
+number:
+  - platform: template
+    id: eyelids_position
+    name: "Eyelids Position"
+    icon: "mdi:eye-settings-outline"
+    # entity_category: config
+    optimistic: true
+    restore_value: true
+    initial_value: 1.0 # Start with eyes fully open
+    min_value: 0.0
+    max_value: 1.0
+    step: 0.1
+    on_value:
+      then:
+        - if:
+            condition:
+              # Only apply the value if manual mode is on
+              switch.is_on: manual_eyelid_switch
+            then:
+              - lambda: |-
+                  // Update both eyes to the new slider position
+                  id(blink_left) = x;
+                  id(blink_right) = x;
+  - platform: template
+    id: left_eyelid_position
+    name: "Left Eyelid"
+    icon: "mdi:eye-settings-outline"
+    # entity_category: config
+    optimistic: true
+    restore_value: true
+    initial_value: 1.0 # Start with eyes fully open
+    min_value: 0.0
+    max_value: 1.0
+    step: 0.1
+    on_value:
+      then:
+        - if:
+            condition:
+              # Only apply the value if manual mode is on
+              switch.is_on: manual_eyelid_switch
+            then:
+              - lambda: |-
+                  // Update eye to the new slider position
+                  id(blink_left) = x;
+  - platform: template
+    id: right_eyelid_position
+    name: "Right Eyelid"
+    icon: "mdi:eye-settings-outline"
+    # entity_category: config
+    optimistic: true
+    restore_value: true
+    initial_value: 1.0 # Start with eyes fully open
+    min_value: 0.0
+    max_value: 1.0
+    step: 0.1
+    on_value:
+      then:
+        - if:
+            condition:
+              # Only apply the value if manual mode is on
+              switch.is_on: manual_eyelid_switch
+            then:
+              - lambda: |-
+                  // Update eye to the new slider position
+                  id(blink_right) = x;
+
+select:
+  - platform: template
+    entity_category: config
+    name: Wake word engine location
+    id: wake_word_engine_location
+    icon: "mdi:account-voice"
+    optimistic: true
+    restore_value: true
+    options:
+      - In Home Assistant
+      - On device
+    initial_option: On device
+    on_value:
+      - if:
+          condition:
+            lambda: return !id(init_in_progress);
+          then:
+            - wait_until:
+                lambda: return id(voice_assistant_phase) == ${voice_assist_muted_phase_id} || id(voice_assistant_phase) == ${voice_assist_idle_phase_id};
+            - if:
+                condition:
+                  lambda: return x == "In Home Assistant";
+                then:
+                  - micro_wake_word.stop
+                  - delay: 500ms
+                  - if:
+                      condition:
+                        switch.is_off: mute
+                      then:
+                        - lambda: id(va).set_use_wake_word(true);
+                        - voice_assistant.start_continuous:
+            - if:
+                condition:
+                  lambda: return x == "On device";
+                then:
+                  - lambda: id(va).set_use_wake_word(false);
+                  - voice_assistant.stop
+                  - delay: 500ms
+                  - if:
+                      condition:
+                        switch.is_off: mute
+                      then:
+                        - micro_wake_word.start
+  - platform: template
+    name: "Pupil Color"
+    id: pupil_color_select
+    icon: "mdi:palette"
+    optimistic: true
+    restore_value: true
+    options:
+      - Black
+      - White
+      - Red
+      - Green
+      - Blue
+      - Yellow
+      - Dark Red
+      - Dark Green
+      - Dark Blue
+      - Dark Yellow
+      - Orange
+      - Purple
+      - Light Gray
+      - Light Blue
+      - Light Green
+      - Light Yellow
+      - Light Pink
+      - Cream
+      - Cyan
+      - Bloodshot
+      - Tired
+      - Robot
+      - Alien
+    initial_option: Black
+    on_value:
+      - lambda: |-
+          if (x == "White") {
+            id(pupil_color_current) = id(C_WHITE);
+          } else if (x == "Red") {
+            id(pupil_color_current) = id(C_RED);
+          } else if (x == "Green") {
+            id(pupil_color_current) = id(C_GREEN);
+          } else if (x == "Blue") {
+            id(pupil_color_current) = id(C_BLUE);
+          } else if (x == "Yellow") {
+            id(pupil_color_current) = id(C_YELLOW);
+          } else if (x == "Dark Red") {
+            id(pupil_color_current) = id(C_DARK_RED);
+          } else if (x == "Dark Green") {
+            id(pupil_color_current) = id(C_DARK_GREEN);
+          } else if (x == "Dark Blue") {
+            id(pupil_color_current) = id(C_DARK_BLUE);
+          } else if (x == "Dark Yellow") {
+            id(pupil_color_current) = id(C_DARK_YELLOW);
+          } else if (x == "Orange") {
+            id(pupil_color_current) = id(C_ORANGE);
+          } else if (x == "Purple") {
+            id(pupil_color_current) = id(C_PURPLE);
+          } else if (x == "Light Gray") {
+            id(pupil_color_current) = id(C_LIGHT_GRAY);
+          } else if (x == "Light Blue") {
+            id(pupil_color_current) = id(C_LIGHT_BLUE);
+          } else if (x == "Light Green") {
+            id(pupil_color_current) = id(C_LIGHT_GREEN);
+          } else if (x == "Light Yellow") {
+            id(pupil_color_current) = id(C_LIGHT_YELLOW);
+          } else if (x == "Light Pink") {
+            id(pupil_color_current) = id(C_LIGHT_PINK);
+          } else if (x == "Cream") {
+            id(pupil_color_current) = id(C_CREAM);
+          } else if (x == "Cyan") {
+            id(pupil_color_current) = id(C_CYAN);
+          } else if (x == "Bloodshot") {
+            id(pupil_color_current) = id(C_BLOODSHOT);
+          } else if (x == "Tired") {
+            id(pupil_color_current) = id(C_TIRED);
+          } else if (x == "Robot") {
+            id(pupil_color_current) = id(C_ROBOT);
+          } else if (x == "Alien") {
+            id(pupil_color_current) = id(C_ALIEN);
+          } else {
+            id(pupil_color_current) = id(C_BLACK);
+          }
+
+  - platform: template
+    name: "Eye Color"
+    id: eye_color_select
+    icon: "mdi:eye"
+    optimistic: true
+    restore_value: true
+    options:
+      - White
+      - Black
+      - Red
+      - Green
+      - Blue
+      - Yellow
+      - Dark Red
+      - Dark Green
+      - Dark Blue
+      - Dark Yellow
+      - Orange
+      - Purple
+      - Light Gray
+      - Light Blue
+      - Light Green
+      - Light Yellow
+      - Light Pink
+      - Cream
+      - Cyan
+      - Bloodshot
+      - Tired
+      - Robot
+      - Alien
+    initial_option: White
+    on_value:
+      - lambda: |-
+          if (x == "Black") {
+            id(eye_color_current) = id(C_BLACK);
+          } else if (x == "Red") {
+            id(eye_color_current) = id(C_RED);
+          } else if (x == "Green") {
+            id(eye_color_current) = id(C_GREEN);
+          } else if (x == "Blue") {
+            id(eye_color_current) = id(C_BLUE);
+          } else if (x == "Yellow") {
+            id(eye_color_current) = id(C_YELLOW);
+          } else if (x == "Dark Red") {
+            id(eye_color_current) = id(C_DARK_RED);
+          } else if (x == "Dark Green") {
+            id(eye_color_current) = id(C_DARK_GREEN);
+          } else if (x == "Dark Blue") {
+            id(eye_color_current) = id(C_DARK_BLUE);
+          } else if (x == "Dark Yellow") {
+            id(eye_color_current) = id(C_DARK_YELLOW);
+          } else if (x == "Orange") {
+            id(eye_color_current) = id(C_ORANGE);
+          } else if (x == "Purple") {
+            id(eye_color_current) = id(C_PURPLE);
+          } else if (x == "Light Gray") {
+            id(eye_color_current) = id(C_LIGHT_GRAY);
+          } else if (x == "Light Blue") {
+            id(eye_color_current) = id(C_LIGHT_BLUE);
+          } else if (x == "Light Green") {
+            id(eye_color_current) = id(C_LIGHT_GREEN);
+          } else if (x == "Light Yellow") {
+            id(eye_color_current) = id(C_LIGHT_YELLOW);
+          } else if (x == "Light Pink") {
+            id(eye_color_current) = id(C_LIGHT_PINK);
+          } else if (x == "Cream") {
+            id(eye_color_current) = id(C_CREAM);
+          } else if (x == "Cyan") {
+            id(eye_color_current) = id(C_CYAN);
+          } else if (x == "Bloodshot") {
+            id(eye_color_current) = id(C_BLOODSHOT);
+          } else if (x == "Tired") {
+            id(eye_color_current) = id(C_TIRED);
+          } else if (x == "Robot") {
+            id(eye_color_current) = id(C_ROBOT);
+          } else if (x == "Alien") {
+            id(eye_color_current) = id(C_ALIEN);
+          } else {
+            id(eye_color_current) = id(C_WHITE);
+          }
+
+  - platform: template
+    name: "Background Color"
+    id: background_color_select
+    icon: "mdi:format-color-fill"
+    optimistic: true
+    restore_value: true
+    options:
+      - Black
+      - White
+      - Red
+      - Green
+      - Blue
+      - Yellow
+      - Dark Red
+      - Dark Green
+      - Dark Blue
+      - Dark Yellow
+      - Orange
+      - Purple
+      - Light Gray
+      - Light Blue
+      - Light Green
+      - Light Yellow
+      - Light Pink
+      - Cream
+      - Cyan
+      - Bloodshot
+      - Tired
+      - Robot
+      - Alien
+    initial_option: Black
+    on_value:
+      - lambda: |-
+          if (x == "White") {
+            id(current_bg_color) = id(C_WHITE);
+          } else if (x == "Red") {
+            id(current_bg_color) = id(C_RED);
+          } else if (x == "Green") {
+            id(current_bg_color) = id(C_GREEN);
+          } else if (x == "Blue") {
+            id(current_bg_color) = id(C_BLUE);
+          } else if (x == "Yellow") {
+            id(current_bg_color) = id(C_YELLOW);
+          } else if (x == "Dark Red") {
+            id(current_bg_color) = id(C_DARK_RED);
+          } else if (x == "Dark Green") {
+            id(current_bg_color) = id(C_DARK_GREEN);
+          } else if (x == "Dark Blue") {
+            id(current_bg_color) = id(C_DARK_BLUE);
+          } else if (x == "Dark Yellow") {
+            id(current_bg_color) = id(C_DARK_YELLOW);
+          } else if (x == "Orange") {
+            id(current_bg_color) = id(C_ORANGE);
+          } else if (x == "Purple") {
+            id(current_bg_color) = id(C_PURPLE);
+          } else if (x == "Light Gray") {
+            id(current_bg_color) = id(C_LIGHT_GRAY);
+          } else if (x == "Light Blue") {
+            id(current_bg_color) = id(C_LIGHT_BLUE);
+          } else if (x == "Light Green") {
+            id(current_bg_color) = id(C_LIGHT_GREEN);
+          } else if (x == "Light Yellow") {
+            id(current_bg_color) = id(C_LIGHT_YELLOW);
+          } else if (x == "Light Pink") {
+            id(current_bg_color) = id(C_LIGHT_PINK);
+          } else if (x == "Cream") {
+            id(current_bg_color) = id(C_CREAM);
+          } else if (x == "Cyan") {
+            id(current_bg_color) = id(C_CYAN);
+          } else if (x == "Bloodshot") {
+            id(current_bg_color) = id(C_BLOODSHOT);
+          } else if (x == "Tired") {
+            id(current_bg_color) = id(C_TIRED);
+          } else if (x == "Robot") {
+            id(current_bg_color) = id(C_ROBOT);
+          } else if (x == "Alien") {
+            id(current_bg_color) = id(C_ALIEN);
+          } else {
+            id(current_bg_color) = id(C_BLACK);
+          }
+          
+text_sensor:
+  - id: text_request
+    platform: template
+    name: Text Request
+    icon: "mdi:comment-text-outline"
+    on_value:
+      lambda: |-
+        if(id(text_request).state.length()>32) {
+          std::string name = id(text_request).state.c_str();
+          std::string truncated = esphome::str_truncate(name.c_str(),31);
+          id(text_request).state = (truncated+"...").c_str();
+        }
+
+  - id: text_response
+    platform: template
+    name: Text Response
+    icon: "mdi:comment-text"
+    on_value:
+      lambda: |-
+        if(id(text_response).state.length()>32) {
+          std::string name = id(text_response).state.c_str();
+          std::string truncated = esphome::str_truncate(name.c_str(),31);
+          id(text_response).state = (truncated+"...").c_str();
+        }
+
+color:
+  # --- Page Background Colors ---
+  - id: idle_color
+    hex: ${idle_illustration_background_color}
+  - id: listening_color
+    hex: ${listening_illustration_background_color}
+  - id: thinking_color
+    hex: ${thinking_illustration_background_color}
+  - id: replying_color
+    hex: ${replying_illustration_background_color}
+  - id: loading_color
+    hex: ${loading_illustration_background_color}
+  - id: error_color
+    hex: ${error_illustration_background_color}
+  - id: muted_color
+    hex: ${error_illustration_background_color}  
+  - id: finished_color
+    hex: ${error_illustration_background_color} 
+  - id: active_timer_color
+    hex: "26ed3a"
+  - id: paused_timer_color
+    hex: "3b89e3"
+
+  # --- Color Palette Constants ---
+  - id: C_BLACK
+    hex: "000000"
+  - id: C_WHITE
+    hex: "ffffff"
+  - id: C_RED
+    hex: "ff0000"
+  - id: C_GREEN
+    hex: "00ff00"
+  - id: C_BLUE
+    hex: "0000ff"
+  - id: C_YELLOW
+    hex: "ffff00"
+  - id: C_DARK_RED
+    hex: "8b0000"
+  - id: C_DARK_GREEN
+    hex: "006400"
+  - id: C_DARK_BLUE
+    hex: "00008b"
+  - id: C_DARK_YELLOW
+    hex: "cccc00"
+  - id: C_ORANGE
+    hex: "ffa500"
+  - id: C_PURPLE
+    hex: "800080"
+  - id: C_LIGHT_GRAY
+    hex: "c8c8c8"
+  - id: C_LIGHT_BLUE
+    hex: "c8dcff"
+  - id: C_LIGHT_GREEN
+    hex: "c8ffc8"
+  - id: C_LIGHT_YELLOW
+    hex: "ffffc8"
+  - id: C_LIGHT_PINK
+    hex: "ffc8dc"
+  - id: C_CREAM
+    hex: "fff5e6"
+  - id: C_CYAN
+    hex: "c8ffff"
+  - id: C_BLOODSHOT
+    hex: "fff0f0"
+  - id: C_TIRED
+    hex: "e6e6e6"
+  - id: C_ROBOT
+    hex: "e6f0ff"
+  - id: C_ALIEN
+    hex: "e6ffe6"
+
+font:
+  - file:
+      type: gfonts
+      family: ${font_family}
+      weight: 300
+      italic: true
+    id: font_request
+    size: 17
+    glyphsets:
+      - ${font_glyphsets}
+  - file:
+      type: gfonts
+      family: ${font_family}
+      weight: 300
+    id: font_response
+    size: 17
+    glyphsets:
+      - ${font_glyphsets}
+  - file:
+      type: gfonts
+      family: ${font_family}
+      weight: 300
+    id: font_battery
+    size: 24
+    glyphsets:
+      - ${font_glyphsets}
+  - file:
+      type: gfonts
+      family: ${font_family}
+      weight: 300
+    id: font_timer
+    size: 30
+    glyphsets:
+      - ${font_glyphsets}
+
+image:
+  - file: ${loading_illustration_file}
+    id: casita_initializing
+    resize: ${imagewidth}x${imageheight}
+    type: RGB
+    transparency: alpha_channel
+  - file: ${error_no_wifi_file}
+    id: error_no_wifi
+    resize: ${imagewidth}x${imageheight}
+    type: RGB
+    transparency: alpha_channel
+  - file: ${error_no_ha_file}
+    id: error_no_ha
+    resize: ${imagewidth}x${imageheight}
+    type: RGB
+    transparency: alpha_channel
+
+display:
+  - platform: ili9xxx
+    id: s3_box_lcd
+    model: ${displaymodel}
+    invert_colors: ${invertcolors}
+    data_rate: 40MHz
+    cs_pin: GPIO${lcd_cs_pin}
+    dc_pin: GPIO${lcd_dc_pin}
+    reset_pin:
+      number: GPIO${lcd_reset_pin}
+    update_interval: 80ms
+    dimensions:
+      height: ${imageheight}
+      width: ${imagewidth}
+
+    pages:      
+      - id: idle_page
+        lambda: |-
+          id(current_page) = "idle_page";
+          id(current_bg_color) = id(idle_color);
+                   
+          id(eyes_engine_tick).execute();
+
+          // --- ADVANCED NON-BLOCKING ANIMATION ENGINE V4 (Robust & Self-Contained) ---
+          const unsigned long now = millis(); 
+ 
+          // Add random personality moments
+          if (!id(idle_motion_active) && (random_uint32() % 1000) < 2) {  // 0.2% chance per frame
+            int quirk = random_uint32() % 3;
+            if (quirk == 0) {
+              // Quick double blink
+              id(blink_state) = 1;
+              id(blink_started_at) = now;
+              id(blink_close_ms) = 60;
+              id(blink_hold_ms) = 10;
+              id(blink_open_ms) = 60;
+            } else if (quirk == 1) {
+              // Slight squint
+              id(blink_left) = 0.8;
+              id(blink_right) = 0.8;
+            }
+          }
+
+          // If an animation is currently active, run its logic.
+          if (id(idle_motion_active)) {
+            int pattern = id(idle_motion_pattern);
+            int step = id(idle_motion_step);
+            bool animation_is_finished = false;
+
+            switch(pattern) {
+              case 0: // Quick Glance - now fully self-contained
+                if (step == 0) { // Step 0: Set position and wait for travel time
+                  id(eye_offset_x) = (rand() % 5 - 2) * 15;
+                  id(eye_offset_y) = (rand() % 5 - 2) * 15;
+                  
+                  // After setting the position, immediately move to the next step's logic.
+                  id(idle_motion_step) = 1;
+                  id(animation_step_time) = now;
+
+                } else if (step == 1) { // Step 1: Wait for hold time
+                  if (now - id(animation_step_time) > 2000) { // Hold for 2000ms
+                    animation_is_finished = true;
+                  }
+                }
+                break;
+
+              case 1: // Look Left -> Right -> Center
+                if (now - id(animation_step_time) > 800) {
+                  if (step == 0) { id(eye_offset_x) = -${max_eye_movement}; id(eye_offset_y) = 0; }
+                  else if (step == 1) { id(eye_offset_x) = ${max_eye_movement}; } 
+                  else if (step == 2) { id(eye_offset_x) = 0; }
+                  else { animation_is_finished = true; }
+                  
+                  if (!animation_is_finished) { id(idle_motion_step) += 1; id(animation_step_time) = now; }
+                }
+                break;
+
+              case 2: // Look Diagonal
+                if (now - id(animation_step_time) > 800) {
+                  if (step == 0) { id(eye_offset_x) = -${max_eye_movement}; id(eye_offset_y) = -${max_eye_movement}; } 
+                  else if (step == 1) { id(eye_offset_x) = ${max_eye_movement}; id(eye_offset_y) = ${max_eye_movement}; }
+                  else if (step == 2) { id(eye_offset_x) = 0; id(eye_offset_y) = 0; }
+                  else { animation_is_finished = true; }
+                  
+                  if (!animation_is_finished) { id(idle_motion_step) += 1; id(animation_step_time) = now; }
+                }
+                break;
+
+              case 3: // Circular Motion
+                if (now - id(animation_step_time) > 300) {
+                  if (step < 8) {
+                    const int radius = ${max_eye_movement};
+                    const float angle = step * 3.14159f / 4.0f;
+                    id(eye_offset_x) = static_cast<int>(radius * cosf(angle));
+                    id(eye_offset_y) = static_cast<int>(radius * sinf(angle));
+                  } else { animation_is_finished = true; }
+                  
+                  if (!animation_is_finished) { id(idle_motion_step) += 1; id(animation_step_time) = now; }
+                }
+                break;
+
+              case 4: // Horizontal Sweep
+                if (now - id(animation_step_time) > 300) {
+                  if (step < 11) { id(eye_offset_x) = -${max_eye_movement} + (step * 6); } 
+                  else { animation_is_finished = true; }
+
+                  if (!animation_is_finished) { id(idle_motion_step) += 1; id(animation_step_time) = now; }
+                }
+                break;
+
+              case 5: // Squinting animation
+                if (step == 0) {
+                  if (now - id(animation_step_time) > 3000) { id(idle_motion_step) = 1; id(animation_step_time) = now; }
+                } else { animation_is_finished = true; }
+                break;
+
+              case 6: // Thinking Hold animation
+                // This animation does nothing. It just holds its initial position.
+                // It will be stopped externally when the 'replying' phase begins.
+                break;
+            }
+
+            // --- Check if any animation has finished and reset state ---
+            if (animation_is_finished) {
+              id(idle_motion_active) = false;
+              id(last_idle_motion) = now;
+              id(eye_offset_x) = 0;
+              id(eye_offset_y) = 0;
+              id(blink_left) = 1.0;
+              id(blink_right) = 1.0;
+            }
+          }
+          // Else, if no animation is active, check if we should start a new one.
+          else if (!id(manual_eye_control).state && now - id(last_interaction) > 10000 && now - id(last_idle_motion) > 15000) {
+            id(idle_motion_active) = true;
+            id(last_idle_motion) = now;
+            id(animation_step_time) = now;
+            id(idle_motion_step) = 0;
+            id(idle_motion_pattern) = random_uint32() % 6;
+
+            ESP_LOGI("idle_animation", "Starting new idle pattern: %d", id(idle_motion_pattern));
+
+            // --- Corrected Initial setup for patterns ---
+            // This block sets the starting state for animations before the main engine takes over.
+            switch (id(idle_motion_pattern)) {
+              case 1: // Look Left
+                id(eye_offset_x) = -${max_eye_movement}; id(eye_offset_y) = 0;
+                break;
+              case 2: // Look Diagonal
+                id(eye_offset_x) = -${max_eye_movement}; id(eye_offset_y) = -${max_eye_movement};
+                break;
+              case 3: // Circular Motion - needs a starting point
+                id(eye_offset_x) = ${max_eye_movement}; id(eye_offset_y) = 0; // Start at angle 0
+                break;
+              case 4: // Horizontal Sweep - needs a starting point
+                id(eye_offset_x) = -${max_eye_movement}; id(eye_offset_y) = 0; // Start at far left
+                break;
+              case 5: // Squint
+                id(blink_left) = 0.4;
+                id(blink_right) = 0.4;
+                break;
+              // NOTE: Case 0 is intentionally left out because it is fully self-contained and sets its own position.
+            }
+          }
+
+          // Update the target based on current offsets
+          id(eyeTarget) = {${screen_center_x} + id(eye_offset_x), ${screen_center_y} + id(eye_offset_y)};
+          
+          // Add subtle micro-movements when idle
+          if (!id(idle_motion_active) && (random_uint32() % 100) < 2) {
+            // 2% chance per frame for micro-movement
+            id(eye_offset_x) += (random_uint32() % 5) - 2;  // -2 to +2
+            id(eye_offset_y) += (random_uint32() % 5) - 2;  // -2 to +2
+            
+            // Clamp to small movements
+            if (id(eye_offset_x) > 5) id(eye_offset_x) = 5;
+            if (id(eye_offset_x) < -5) id(eye_offset_x) = -5;
+            if (id(eye_offset_y) > 5) id(eye_offset_y) = 5;
+            if (id(eye_offset_y) < -5) id(eye_offset_y) = -5;
+          }
+          
+          // Check if it's time for a personality quirk
+          if (!id(manual_eye_control).state && id(next_quirk_at) > 0 && now >= id(next_quirk_at)) {
+            id(next_quirk_at) = 0;
+                        
+            // Trigger a non-blocking animation from the full range of personalities
+            int quirk = random_uint32() % 13; // We have 13 animations to choose from (0-12)
+            
+            ESP_LOGI("quirk_animation", "Starting new quirk pattern: %d", quirk);
+            
+            switch (quirk) {
+              case 0:  id(double_blink).execute(); break;            
+              case 1:  id(trigger_peek).execute(); break;
+              case 2:  id(trigger_bounce).execute(); break;
+              case 3:  id(eyeroll_animation).execute(); break;
+              case 4:  id(side_glance).execute(); break;
+              case 5:  id(happy_dance).execute(); break;
+              case 6:  id(surprised_pop).execute(); break;
+              case 7:  id(dizzy_swirl).execute(); break;
+              case 8:  id(confused_look).execute(); break;
+              case 9:  id(double_take).execute(); break;
+              case 10: id(sleepy_eyes).execute(); break;
+              case 11: id(go_cross_eyed).execute(); break;
+              case 12: id(curious_tilt).execute(); break;
+            }
+            
+            // Schedule the next quirk
+            id(random_personality_quirk).execute();
+          }
+          
+          // --- END OF EYE MOVEMENT LOGIC ---
+          
+          // --- Call the drawing script ---
+          id(draw_eyes_and_ui).execute(id(current_bg_color), ${eye_radius}, id(pupil_radius_current), id(pupil_color_current), id(eye_color_current));
+          
+          // --- UI Overlay Logic ---
+          id(draw_timer_timeline).execute();
+
+          id(check_if_timers_active).execute();
+          if (id(global_is_timer_active)) {
+            id(draw_active_timer_widget).execute();
+          } else if (id(show_battery_status).state) {
+            // --- THIS IS THE CORRECTED BATTERY DRAWING LOGIC ---
+            const int bw = 80, bh = 30;               // Box width and height
+            const int bx = (it.get_width() - bw) / 2; // Box X position (perfectly centered)
+            const int by = 10;                        // Box Y position
+
+            // Draw the box
+            it.filled_rectangle(bx, by, bw, bh, Color::WHITE);
+            it.rectangle(bx, by, bw, bh, id(pupil_color_current));
+
+            // Draw the text perfectly centered inside the box
+            it.printf(
+              bx + (bw / 2),        // X: Center of the box
+              by + (bh / 2),        // Y: Center of the box
+              id(font_battery),
+              Color::BLACK,
+              TextAlign::CENTER,    // Use absolute center alignment
+              "%.0f%%",
+              id(battery_percentage).state
+            );
+          }
+          
+          
+      - id: listening_page
+        lambda: |-
+          id(current_page) = "listening_page";
+          id(current_bg_color) = id(listening_color);
+          
+          id(eyes_engine_tick).execute();
+
+          const unsigned long now = millis();
+          if (now - id(last_pupil_pulse) > 200) {
+            id(last_pupil_pulse) = now; // Reset timer
+            if (id(pupil_radius_target) > ${pupil_radius_big}) {
+              id(pupil_radius_target) = ${pupil_radius_big} - 2;
+            } else {
+              id(pupil_radius_target) = ${pupil_radius_big} + 3;
+            }
+          }
+
+          // No animation logic on this page, pupils are static
+          id(eyeTarget) = {${screen_center_x}, ${screen_center_y}};
+
+          // --- Call the drawing script ---
+          id(draw_eyes_and_ui).execute(id(current_bg_color), ${eye_radius}, id(pupil_radius_current), id(pupil_color_current), id(eye_color_current));
+
+          id(draw_timer_timeline).execute();
+
+
+      - id: thinking_page
+        lambda: |-
+          id(current_page) = "thinking_page";
+          id(current_bg_color) = id(thinking_color);
+          
+          
+          // --- Main Eye Animation Logic ---
+          id(eyes_engine_tick).execute();
+          id(eyeTarget) = {${screen_center_x} + id(eye_offset_x), ${screen_center_y} + id(eye_offset_y)};
+          id(draw_eyes_and_ui).execute(id(current_bg_color), ${eye_radius}, id(pupil_radius_current), id(pupil_color_current), id(eye_color_current));
+
+          // --- NON-BLOCKING THINKING DOTS LOGIC ---
+          const unsigned long now = millis();
+          
+          // 1. Check if 300ms have passed since the last dot change
+          if (now - id(last_dot_update) > 300) {
+            id(last_dot_update) = now; // Reset the timer
+            id(thinking_dot_position) = (id(thinking_dot_position) + 1) % 3; // Advance the dot
+          }
+
+          // 2. Draw the dots in their current state on every frame
+          const int dot_y = 210;
+          
+          const int dot_spacing = 20;
+          it.filled_rectangle(80, dot_y - 5, 80, 10, id(current_bg_color)); // Clear previous dots
+          for(int i = 0; i < 3; i++) {
+            int x = 100 + (i * dot_spacing);
+            int radius = (i == id(thinking_dot_position)) ? 5 : 3;
+            it.filled_circle(x, dot_y, radius, Color::WHITE);
+          }
+
+          // --- UI Overlay Logic with centering for short text ---
+          if (id(show_text).state && !id(text_request).state.empty()) {
+            int box_width = 200;
+            int box_height = 30;
+            int box_x = 20;
+            int box_y = 20;
+            
+            // Check if text is short (less than 15 characters)
+            if (id(text_request).state.length() < 15) {
+              // Center the box and text
+              box_width = 120;  // Smaller box for short text
+              box_x = (it.get_width() - box_width) / 2;  // Center horizontally
+            }
+            
+            it.filled_rectangle(box_x, box_y, box_width, box_height, Color::WHITE);
+            it.rectangle(box_x, box_y, box_width, box_height, id(pupil_color_current));
+            
+            // Center text within the box
+            it.printf(
+              box_x + (box_width / 2),  // Center X
+              box_y + (box_height / 2) - 2,  // Center Y (adjusted for font height)
+              id(font_request), 
+              Color::BLACK, 
+              TextAlign::CENTER,  // Center alignment
+              "%s", 
+              id(text_request).state.c_str()
+            );
+          }
+          
+          id(draw_timer_timeline).execute();
+
+
+      - id: replying_page
+        lambda: |-
+          id(current_page) = "replying_page";
+          id(current_bg_color) = id(replying_color);
+          
+          id(eyes_engine_tick).execute();
+
+          // --- Call the drawing script ---
+          id(draw_eyes_and_ui).execute(id(current_bg_color), ${eye_radius}, id(pupil_radius_current), id(pupil_color_current), id(eye_color_current));
+
+          int y_offset = 190;
+          if (it.get_height() == 320) {
+            y_offset = 270;
+          }
+
+          if (id(show_text).state && !id(text_response).state.empty()) {
+            int box_width = 200;
+            int box_height = 30;
+            int box_x = 20;
+            
+            // Check if text is short (less than 15 characters)
+            if (id(text_response).state.length() < 15) {
+              // Center the box for short text
+              box_width = 120;  // Smaller box
+              box_x = (it.get_width() - box_width) / 2;  // Center horizontally
+            }
+            
+            it.filled_rectangle(box_x, y_offset, box_width, box_height, Color::WHITE);
+            it.rectangle(box_x, y_offset, box_width, box_height, id(pupil_color_current));
+            
+            // Center text within the box
+            it.printf(
+              box_x + (box_width / 2),  // Center X
+              y_offset + (box_height / 2) - 2,  // Center Y
+              id(font_response), 
+              Color::BLACK, 
+              TextAlign::CENTER,  // Center alignment
+              "%s", 
+              id(text_response).state.c_str()
+            );
+          }
+
+          id(draw_timer_timeline).execute();
+
+      - id: muted_page
+        lambda: |-
+          id(current_page) = "muted_page";
+          id(current_bg_color) = id(muted_color);
+                  
+          id(eyes_engine_tick).execute();
+
+          id(eyeTarget) = {${screen_center_x}, ${screen_center_y}};
+
+          // --- Call the drawing script ---
+          id(draw_eyes_and_ui).execute(id(current_bg_color), ${eye_radius}, id(pupil_radius_current), id(pupil_color_current), id(eye_color_current));
+
+          // --- Draw the 10px thick 'X' mouth on top by stacking lines ---
+          const int mouth_center_y = ${screen_center_y} + 70;
+          const int mouth_half_size = 10;
+          const esphome::Color mouth_color = Color::WHITE;
+
+          // Loop 10 times to create a 10px thick line.
+          // An offset from -4 to 5 is 10 iterations, centered on the original line.
+          for (int offset = -4; offset <= 5; offset++) {
+            // Draw line from top-left to bottom-right
+            it.line(
+              ${screen_center_x} - mouth_half_size + offset, mouth_center_y - mouth_half_size,
+              ${screen_center_x} + mouth_half_size + offset, mouth_center_y + mouth_half_size,
+              mouth_color
+            );
+
+            // Draw line from top-right to bottom-left
+            it.line(
+              ${screen_center_x} + mouth_half_size + offset, mouth_center_y - mouth_half_size,
+              ${screen_center_x} - mouth_half_size + offset, mouth_center_y + mouth_half_size,
+              mouth_color
+            );
+          }
+
+
+      - id: error_page
+        lambda: |-
+          id(current_page) = "error_page";
+          id(current_bg_color) = id(error_color);
+          
+          id(eyes_engine_tick).execute();
+
+          // --- Call the drawing script ---
+          id(draw_eyes_and_ui).execute(id(current_bg_color), ${eye_radius}, id(pupil_radius_current), id(pupil_color_current), id(eye_color_current));
+
+      - id: timer_finished_page
+        lambda: |-
+          id(current_page) = "timer_finished_page";
+          id(current_bg_color) = id(finished_color);
+          
+          id(eyes_engine_tick).execute();
+
+          // --- Call the drawing script ---
+          id(draw_eyes_and_ui).execute(id(current_bg_color), ${eye_radius}, id(pupil_radius_current), id(pupil_color_current), id(eye_color_current));
+
+      - id: no_ha_page
+        lambda: |-
+          id(current_page) = "no_ha_page";
+          it.image((it.get_width() / 2), (it.get_height() / 2), id(error_no_ha), ImageAlign::CENTER);
+      - id: no_wifi_page
+        lambda: |-
+          id(current_page) = "no_wifi_page";
+          it.image((it.get_width() / 2), (it.get_height() / 2), id(error_no_wifi), ImageAlign::CENTER);
+      - id: initializing_page
+        lambda: |-
+          id(current_page) = "initializing_page";
+          it.fill(id(loading_color));
+          it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_initializing), ImageAlign::CENTER);
